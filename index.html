@@ -2396,8 +2396,8 @@
                         ? Number(guestsSelect.value || 1)
                         : 0;
 
-                    // Google Apps Script is more reliable here with a GET request.
-                    // The API validates the guest ID server-side before writing to the sheet.
+                   
+                    //  API validates the guest ID server-side before writing to the sheet.
                     const params = new URLSearchParams();
                     params.set("action", "submitRSVP");
                     params.set("guestId", String(currentGuest.id || ""));
@@ -2446,9 +2446,7 @@
             });
         }
 
-        // =====================================================
-        // PREVENT IMAGE DRAGGING
-        // =====================================================
+        
         document.querySelectorAll("img").forEach(function (image) {
             image.addEventListener("dragstart", function (event) {
                 event.preventDefault();
