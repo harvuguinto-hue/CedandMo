@@ -13,10 +13,10 @@ const CONFIG = {
             },
 
             venue: {
-                name: "Wedding Venue",
-                address: "Pampanga, Philippines",
-                latitude: 15.0794,
-                longitude: 120.6200
+                name: "RL Resort & Leisure Park - White Lotus",
+    address: "3GMX+4JP, Porac, Pampanga",
+    latitude: 15.0828281,
+    longitude: 120.5490793
             },
 
             map: {
@@ -1572,7 +1572,7 @@ const GUEST_LIST = [
 
             if (directions) {
                 directions.href =
-                    `https://www.openstreetmap.org/?mlat=${CONFIG.venue.latitude}&mlon=${CONFIG.venue.longitude}#map=16/${CONFIG.venue.latitude}/${CONFIG.venue.longitude}`;
+    "https://www.google.com/maps/search/?api=1&query=15.0828281,120.5490793";
             }
         }
 

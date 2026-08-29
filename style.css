@@ -205,7 +205,9 @@
             width: 100%;
             z-index: 999;
             padding: 25px 0;
-            background: rgba(8,8,7,0.55);
+            background: rgba(8, 8, 7, 0.72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .nav-inner {
@@ -304,7 +306,12 @@
         .hero-image {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.48) 50%, rgba(0,0,0,.92)), url("images/photo10.jpg");
+           background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.50) 50%,
+            rgba(0,0,0,.88)
+            ), url("images/LMN-171.jpg");
             background-size: cover;
             background-position: center;
             filter: saturate(.85);
@@ -312,9 +319,19 @@
 
         .hero-image::after {
             content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, transparent 20%, rgba(0,0,0,.5) 100%);
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse at 50% 55%,
+            rgba(155,137,96,.10) 0%,
+            rgba(0,0,0,0) 38%
+        ),
+        radial-gradient(
+            circle at center,
+            transparent 20%,
+            rgba(0,0,0,.45) 100%
+        );
         }
 
         .hero-content {
@@ -328,10 +345,11 @@
 
         .hero-pretitle {
             font-family: var(--serif);
-            font-style: italic;
-            font-size: clamp(20px, 3vw, 30px);
-            color: var(--cream);
-            margin-bottom: 5px;
+    font-style: italic;
+    font-size: clamp(20px, 3vw, 30px);
+    color: var(--cream);
+    margin-bottom: 5px;
+    text-shadow: 0 3px 12px rgba(0,0,0,.8);
         }
 
         .hero-title {
@@ -341,22 +359,25 @@
             line-height: .78;
             letter-spacing: -2px;
             color: var(--cream);
-            text-shadow: 0 5px 30px rgba(0,0,0,.45);
+            text-shadow: 0 3px 12px rgba(0,0,0,.75),
+                            0 8px 30px rgba(0,0,0,.55);
         }
 
         .hero-date {
             margin-top: 28px;
-            font-size: 14px;
-            letter-spacing: 7px;
-            color: var(--gold-light);
+    font-size: 14px;
+    letter-spacing: 7px;
+    color: var(--gold-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,.9);
         }
 
         .hero-location {
             margin-top: 10px;
-            font-size: 8px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,.65);
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+    text-shadow: 0 2px 8px rgba(0,0,0,.9);
         }
 
         .hero-actions {
@@ -469,44 +490,68 @@
         /* =====================================================
            STORY
            ===================================================== */
-        .story-grid {
-            display: grid;
-            grid-template-columns: .85fr 1.15fr;
-            gap: 90px;
-            align-items: center;
-        }
+        /* =====================================================
+   STORY
+   ===================================================== */
 
-        .story-text {
-            max-width: 470px;
-        }
+.story-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 70px;
+    align-items: center;
+    width: 100%;
+}
 
-        .story-text h3 {
-            font-family: var(--serif);
-            font-size: clamp(38px, 5vw, 58px);
-            line-height: .95;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
+.story-text {
+    width: 100%;
+    max-width: 470px;
+}
 
-        .story-text p {
-            margin-bottom: 18px;
-            color: #aaa397;
-            font-size: 12px;
-        }
+.story-text h3 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: .95;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
 
-        .story-image {
-            position: relative;
-            min-height: 540px;
-            overflow: hidden;
-            background: var(--black-card);
-            border: 1px solid rgba(155,137,96,.2);
-        }
+.story-text p {
+    margin-bottom: 18px;
+    color: #aaa397;
+    font-size: 12px;
+}
 
-        .story-image img {
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
+.story-image {
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    background: var(--black-card);
+    border: 1px solid rgba(155,137,96,.2);
+}
+
+.story-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .story-text {
+        max-width: 100%;
+    }
+
+    .story-image {
+        height: 420px;
+    }
+}
 
         .photo-placeholder {
             position: relative;
@@ -658,12 +703,12 @@
         }
 
         .detail-card {
-            padding: 45px 30px;
-            text-align: center;
-            background: var(--black);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+           padding: 45px 30px;
+    text-align: center;
+    background: #12110d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
         }
 
         .detail-icon {
@@ -1203,12 +1248,11 @@
         /* =====================================================
            RESPONSIVE — TABLET & MOBILE
            ===================================================== */
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
             .nav-links { gap: 16px; }
             .nav-links a { font-size: 7px; }
-            .story-grid { grid-template-columns: 1fr; gap: 45px; }
-            .story-text { max-width: 100%; }
-            .story-image { min-height: 500px; }
+            
+          
             .timeline-items { grid-template-columns: repeat(2, 1fr); gap: 40px; }
             .timeline-items::before { display: none; }
             .details-grid { grid-template-columns: 1fr; }
@@ -1374,3 +1418,143 @@
     margin: 22px auto 0;
     
 }
+/* STORY DESKTOP FIX */
+.story-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 60px !important;
+    align-items: center !important;
+}
+
+.story-text {
+    width: 100% !important;
+}
+
+.story-image {
+    width: 100% !important;
+    height: 600px !important;
+}
+
+.story-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+
+/* =========================================
+   OUR STORY - DESKTOP SIDE BY SIDE
+   ========================================= */
+
+.story-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 70px !important;
+    width: 100% !important;
+}
+
+.story-text {
+    flex: 0 0 40% !important;
+    max-width: 470px !important;
+}
+
+.story-image {
+    flex: 1 1 60% !important;
+    width: auto !important;
+    height: 620px !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+}
+
+.story-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .story-grid {
+        flex-direction: column !important;
+        gap: 45px !important;
+    }
+
+    .story-text {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .story-image {
+        flex: none !important;
+        width: 100% !important;
+        height: 420px !important;
+    }
+}
+
+.eyebrow {
+    font-size: 20px;
+    letter-spacing: 6px;
+}
+
+#story > .container > .section-title {
+    margin-bottom: 35px;
+}
+
+#story > .container > .section-title .eyebrow {
+    font-size: 13px;
+    letter-spacing: 5px;
+}
+
+footer {
+    position: relative;
+    min-height: 500px;
+    padding: 110px 20px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.65)
+        ),
+        url("images/LMN-165.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+footer .footer-names,
+footer .ornament,
+footer .footer-date,
+footer .footer-credit {
+    position: relative;
+    z-index: 2;
+}
+
+footer .footer-names {
+    color: var(--cream);
+    text-shadow: 0 3px 15px rgba(0,0,0,.8);
+    font-size: clamp(60px, 9vw, 100px);
+}
+
+footer .footer-date {
+    color: var(--gold-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,.8);
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+footer .footer-credit {
+    color: rgba(255,255,255,.75);
+    text-shadow: 0 2px 8px rgba(0,0,0,.8);
+    font-size: 9px;
+    letter-spacing: 2.5px;
+}
+
