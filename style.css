@@ -222,12 +222,11 @@
 
         .nav-logo {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            min-width: 100px;
-            color: var(--cream);
-            justify-self: start;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 90px;
+    height: 70px;
             
         }
 
@@ -238,6 +237,13 @@
             line-height: 1;
         }
 
+        .nav-mono {
+    display: block;
+    width: 72px;
+    height: auto;
+    max-height: 62px;
+    object-fit: contain;
+}
         .nav-logo-date {
             margin-top: 4px;
             font-size: 10px;
@@ -677,6 +683,7 @@
             font-size: 70px;
             line-height: .5;
             color: var(--gold);
+            transform: translateY(-60px);
         }
 
         .quote-content blockquote {
@@ -1559,7 +1566,6 @@
 }
 
 footer {
-    position: 40% center;
     min-height: 500px;
     padding: 110px 20px 120px;
     display: flex;
@@ -1673,4 +1679,170 @@ footer .footer-credit {
 
 .accordion-group.active .accordion-icon {
     transform: rotate(45deg);
+}
+
+
+
+/* =====================================================
+   FINAL LAYOUT FIXES
+   ===================================================== */
+
+/* Wedding details: ceremony + reception only */
+#details .details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+#details .detail-card {
+    min-height: 275px;
+    justify-content: center;
+}
+
+/* Standalone dress-code / colors section */
+.colors-section {
+    padding: 130px 0;
+    background: var(--black);
+}
+
+.colors-section .section-title {
+    margin-bottom: 0;
+}
+
+.colors-content {
+    margin-top: 70px;
+}
+
+.color-palette-large {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.color-item {
+    min-width: 120px;
+    text-align: center;
+}
+
+.color-swatch {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
+.color-name {
+    display: block;
+    margin-top: 14px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream-soft);
+}
+
+/* Entourage accordions */
+#entourage .people-group {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(154,124,69,.35);
+}
+
+#entourage .accordion-toggle {
+    min-height: 76px;
+    padding: 22px 10px;
+}
+
+#entourage .accordion-toggle .people-title,
+#entourage .accordion-toggle span:first-child {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+}
+
+#entourage .accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .45s ease;
+}
+
+#entourage .accordion-content > .people-grid {
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 0 0;
+    transition: padding .45s ease;
+}
+
+#entourage .accordion-group.active .accordion-content {
+    grid-template-rows: 1fr;
+}
+
+#entourage .accordion-group.active .accordion-content > .people-grid {
+    padding: 10px 0 35px;
+}
+
+#entourage .accordion-icon {
+    color: var(--gold);
+    font-size: 24px;
+}
+
+@media (max-width: 700px) {
+    #details .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #details .detail-card {
+        min-height: 230px;
+    }
+
+    .colors-section {
+        padding: 90px 0;
+    }
+
+    .colors-content {
+        margin-top: 50px;
+    }
+
+    .color-palette-large {
+        gap: 22px 12px;
+    }
+
+    .color-swatch {
+        width: 82px;
+        height: 82px;
+    }
+
+    .color-item {
+        min-width: 82px;
+    }
+
+    #entourage .accordion-toggle .people-title,
+    #entourage .accordion-toggle span:first-child {
+        font-size: 25px;
+    }
+}
+
+
+.hero-names {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(70px, 9vw, 150px);
+    font-weight: 400;
+    letter-spacing: -3px;
+    color: #f3eee3;
+    line-height: 0.9;
+    margin-bottom: 15px;
+}
+
+.loader-monogram {
+    width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }

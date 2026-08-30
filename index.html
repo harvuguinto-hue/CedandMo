@@ -10,687 +10,1290 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+    >
+
     <link rel="stylesheet" href="style.css">
-    
-   
-        
-    
 </head>
+
 <body>
 
+    <!-- LOADER -->
     <div class="loader" id="loader">
         <div class="loader-inner">
-            <div class="loader-monogram">C M</div>
-            <div class="loader-line"></div>
-            <div class="loader-text">Our Wedding</div>
+          <div class="loader">
+    <img src="images/mono.png" alt="Ced & Mo" class="loader-monogram">
+</div>
         </div>
     </div>
 
+
+    <!-- NAVIGATION -->
     <header class="navbar">
         <div class="nav-inner">
+
             <a href="#home" class="nav-logo">
-                <span class="nav-logo-main">C M</span>
-                <span class="nav-logo-date">11 · 22 · 26</span>
-            </a>
+    <img src="images/mono.png" alt="Ced & Mo" class="nav-monogram">
+</a>
 
             <nav class="nav-links" id="navLinks">
                 <a href="#home">Home</a>
                 <a href="#story">Our Story</a>
                 <a href="#details">Wedding Details</a>
                 <a href="#schedule">Schedule</a>
-               
                 <a href="#faq">FAQ</a>
                 <a href="#rsvp">RSVP</a>
             </nav>
 
-            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation">☰</button>
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open navigation"
+            >
+                ☰
+            </button>
+
         </div>
     </header>
 
+
     <main id="home">
+
+
+        <!-- HERO -->
         <section class="hero">
+
             <div class="hero-image"></div>
+
             <div class="hero-content">
-                <h1 class="hero-title">CED &amp; MO</h1>
-                <div class="hero-pretitle">We're getting married!</div>
-                
-                <div class="hero-date">11 · 22 · 26</div>
-                <div class="hero-location">RL Resort & Leisure Park - White Lotus</div>
+
+                <div class="hero-names">CED &amp; MO</div>
+
+                <div class="hero-pretitle">
+                    We're getting married!
+                </div>
+
+                <div class="hero-date">
+                    11 · 22 · 26
+                </div>
+
+                <div class="hero-location">
+                    RL Resort & Leisure Park - White Lotus
+                </div>
+
                 <div class="hero-actions">
                     <a href="#rsvp" class="btn btn-filled">RSVP</a>
                     <a href="#story" class="btn">Our Story</a>
                 </div>
+
             </div>
+
             <div class="hero-scroll">
                 <span>Scroll</span>
                 <span class="hero-scroll-line"></span>
             </div>
+
         </section>
 
+
+        <!-- COUNTDOWN -->
         <section class="countdown-section">
-            <div class="countdown-label">Countdown to our big day</div>
+
+            <div class="countdown-label">
+                Countdown to our big day
+            </div>
+
             <div class="countdown" id="countdown">
+
                 <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-number" id="days">0</div>
                     <div class="countdown-name">Days</div>
                 </div>
+
                 <div class="countdown-item">
                     <div class="countdown-number" id="hours">00</div>
                     <div class="countdown-name">Hours</div>
                 </div>
+
                 <div class="countdown-item">
                     <div class="countdown-number" id="minutes">00</div>
                     <div class="countdown-name">Minutes</div>
                 </div>
+
                 <div class="countdown-item">
                     <div class="countdown-number" id="seconds">00</div>
                     <div class="countdown-name">Seconds</div>
                 </div>
+
             </div>
+
         </section>
 
+
+        <!-- OUR STORY -->
         <section class="section section-dark" id="story">
-    <div class="container">
 
-        <div class="section-title reveal">
-            <span class="eyebrow">Our Story</span>
-        </div>
+            <div class="container">
 
-        <div class="story-grid">
-
-            <div class="story-text reveal">
-                <span class="eyebrow">How it all began</span>
-
-               <h3>Love at first sight<br>is real.</h3>
-                        <p>Their story began at their first job, where Cedrix first caught a glimpse of Monessa and was instantly drawn to her.</p>
-                        <p>From that moment on, he found little opportunities to say hello, start a conversation, and simply be around her. He greeted her almost every day, smiled whenever he saw her, and did his best to get her attention. But winning Monessa’s heart was not something that happened overnight.</p>
-                        <p>From that moment on, he found little opportunities to say hello, start a conversation, and simply be around her. He greeted her almost every day, smiled whenever he saw her, and did his best to get her attention. But winning Monessa’s heart was not something that happened overnight.</p>
-                        <p>Little by little, those familiar hellos became longer conversations. The shared moments became something they both looked forward to. And somewhere along the way, Monessa began to see Cedrix not just as the familiar face who always found a reason to say hello, but as someone who had quietly and consistently made an effort to be part of her life.</p>
-                        <p>What started as Cedrix’s determined pursuit slowly blossomed into a friendship, then a love story—one built over time, through countless small moments, laughter, shared adventures, and the choice to keep choosing each other.</p>
-                        <p>And after years of growing together, she finally said yes—to him, and to a lifetime together.</p>
-                        <p>Now, they are ready to begin their next chapter as husband and wife.</p>
-            </div>
-
-            <div class="story-image reveal">
-                <img
-                    src="images/LMN-89.jpg"
-                    alt="The couple"
-                    onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
-                >
-            </div>
-
-        </div>
-
-        <div class="timeline reveal">
-            <div class="timeline-title">Our Timeline</div>
-
-            <div class="timeline-items">
-                <div class="timeline-item">
-                    <div class="timeline-icon">♡</div>
-                    <h4>First Met</h4>
-                    <span>June 2017</span>
+                <div class="section-title reveal">
+                    <span class="eyebrow">Our Story</span>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-icon">♡</div>
-                    <h4>Started Dating</h4>
-                    <span>March 2018</span>
+                <div class="story-grid">
+
+                    <div class="story-text reveal">
+
+                        <span class="eyebrow">
+                            How it all began
+                        </span>
+
+                        <h3>
+                            Love at first sight<br>
+                            is real.
+                        </h3>
+
+                        <p>
+                            Their story began at their first job, where Cedrix first caught a glimpse of Monessa and was instantly drawn to her.
+                        </p>
+
+                        <p>
+                            From that moment on, he found little opportunities to say hello, start a conversation, and simply be around her. He greeted her almost every day, smiled whenever he saw her, and did his best to get her attention. But winning Monessa’s heart was not something that happened overnight.
+                        </p>
+
+                        <p>
+                            Little by little, those familiar hellos became longer conversations. The shared moments became something they both looked forward to. And somewhere along the way, Monessa began to see Cedrix not just as the familiar face who always found a reason to say hello, but as someone who had quietly and consistently made an effort to be part of her life.
+                        </p>
+
+                        <p>
+                            What started as Cedrix’s determined pursuit slowly blossomed into a friendship, then a love story—one built over time, through countless small moments, laughter, shared adventures, and the choice to keep choosing each other.
+                        </p>
+
+                        <p>
+                            And after years of growing together, she finally said yes—to him, and to a lifetime together.
+                        </p>
+
+                        <p>
+                            Now, they are ready to begin their next chapter as husband and wife.
+                        </p>
+
+                    </div>
+
+
+                    <div class="story-image reveal">
+
+                        <img
+                            src="images/LMN-89.jpg"
+                            alt="The couple"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+
+                    </div>
+
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-icon">◇</div>
-                    <h4>Engaged</h4>
-                    <span>November 2024</span>
+
+                <!-- TIMELINE -->
+                <div class="timeline reveal">
+
+                    <div class="timeline-title">
+                        Our Timeline
+                    </div>
+
+                    <div class="timeline-items">
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">♡</div>
+                            <h4>First Met</h4>
+                            <span>June 2017</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">♡</div>
+                            <h4>Started Dating</h4>
+                            <span>March 2018</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">◇</div>
+                            <h4>Engaged</h4>
+                            <span>November 2024</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon">♡</div>
+                            <h4>Wedding Day</h4>
+                            <span>November 22, 2026</span>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-icon">♡</div>
-                    <h4>Wedding Day</h4>
-                    <span>November 22, 2026</span>
-                </div>
             </div>
-        </div>
 
-    </div>
-</section>
-       
-
-        <section class="quote-section">
-            <div class="quote-bg"></div>
-            <div class="quote-content reveal">
-                <div class="quote-mark">“</div>
-                The best things in life are better together.</blockquote>
-                <div class="quote-author">Ced &amp; Mo</div>
-            </div>
         </section>
 
+
+        <!-- QUOTE -->
+        <section class="quote-section">
+
+            <div class="quote-bg"></div>
+
+            <div class="quote-content reveal">
+
+                <div class="quote-mark">
+                    “
+                </div>
+
+                <div>
+                    The best things in life are better together.
+                </div>
+
+                <div class="quote-author">
+                    Ced &amp; Mo
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WEDDING DETAILS -->
         <section class="section section-dark" id="details">
-<<<<<<< HEAD
+
             <div class="container">
+
                 <div class="section-title reveal">
                     <span class="eyebrow">Wedding Details</span>
                     <h2>Join us</h2>
                 </div>
+
+
+                <!-- CEREMONY + RECEPTION -->
                 <div class="details-grid reveal">
+
                     <div class="detail-card">
+
                         <div class="detail-icon">♜</div>
-                        <h3>Ceremony</h3>
-                        <div class="detail-time">4:00 PM</div>
-                        <p>RL Resort & Leisure Park - White Lotus<br>Pampanga, Philippines</p>
+
+                        <h3>
+                            Ceremony
+                        </h3>
+
+                        <div class="detail-time">
+                            4:00 PM
+                        </div>
+
+                        <p>
+                            RL Resort & Leisure Park - White Lotus<br>
+                            Pampanga, Philippines
+                        </p>
+
                     </div>
+
+
                     <div class="detail-card">
+
                         <div class="detail-icon">♢</div>
-                        <h3>Reception</h3>
-                        <div class="detail-time">6:00 PM</div>
-                        <p>RL Resort & Leisure Park - White Lotus<br>Pampanga, Philippines</p>
+
+                        <h3>
+                            Reception
+                        </h3>
+
+                        <div class="detail-time">
+                            6:00 PM
+                        </div>
+
+                        <p>
+                            RL Resort & Leisure Park - White Lotus<br>
+                            Pampanga, Philippines
+                        </p>
+
                     </div>
-                    <div class="detail-card">
-   
-ass="schedule-row">
-=======
-    <div class="container">
 
-        <div class="section-title reveal">
-            <span class="eyebrow">Wedding Details</span>
-            <h2>Join us</h2>
-        </div>
-
-        <!-- Ceremony + Reception -->
-        <div class="details-grid reveal">
-
-            <div class="detail-card">
-                <div class="detail-icon">♜</div>
-                <h3>Ceremony</h3>
-                <div class="detail-time">4:00 PM</div>
-                <p>
-                    RL Resort & Leisure Park - White Lotus<br>
-                    Pampanga, Philippines
-                </p>
-            </div>
-
-            <div class="detail-card">
-                <div class="detail-icon">♢</div>
-                <h3>Reception</h3>
-                <div class="detail-time">6:00 PM</div>
-                <p>
-                    RL Resort & Leisure Park - White Lotus<br>
-                    Pampanga, Philippines
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- COLORS / DRESS CODE -->
-<section class="section section-dark colors-section" id="colors">
-
-    <div class="container">
-
-        <div class="section-title reveal">
-            <span class="eyebrow">Dress Code</span>
-            <h2>Our Colors</h2>
-            <p class="colors-intro">
-                A palette chosen for our celebration.
-            </p>
-        </div>
-
-        <div class="colors-content reveal">
-
-           
-
-            <!-- Color Palette -->
-            <div class="color-palette-large">
-
-                <div class="color-item">
-                    <span class="color-swatch" style="background-color: #f3ece1;"></span>
-                    <span class="color-name">Ivory</span>
-                </div>
-
-                <div class="color-item">
-                    <span class="color-swatch" style="background-color: #c4b09e;"></span>
-                    <span class="color-name">Taupe</span>
-                </div>
-
-                <div class="color-item">
-                    <span class="color-swatch" style="background-color: #e2d7c5;"></span>
-                    <span class="color-name">Champagne</span>
-                </div>
-
-                <div class="color-item">
-                    <span class="color-swatch" style="background-color: #cfceca;"></span>
-                    <span class="color-name">Soft Gray</span>
-                </div>
-
-                <div class="color-item">
-                    <span class="color-swatch" style="background-color: #f7e7e1;"></span>
-                    <span class="color-name">Blush</span>
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
-    </div>
 
-</section>
+        <!-- DRESS CODE / COLORS -->
+        <section
+            class="section section-dark colors-section"
+            id="colors"
+        >
+
+            <div class="container">
+
+                <div class="section-title reveal">
+
+                    <span class="eyebrow">
+                        Dress Code
+                    </span>
+
+                    <h2>
+                        Our Colors
+                    </h2>
+
+                    <p class="colors-intro">
+                        A palette chosen for our celebration.
+                    </p>
+
+                </div>
+
+
+                <div class="colors-content reveal">
+
+                    <div class="color-palette-large">
+
+                        <div class="color-item">
+
+                            <span
+                                class="color-swatch"
+                                style="background-color: #f3ece1;"
+                            ></span>
+
+                            <span class="color-name">
+                                Ivory
+                            </span>
+
+                        </div>
+
+
+                        <div class="color-item">
+
+                            <span
+                                class="color-swatch"
+                                style="background-color: #c4b09e;"
+                            ></span>
+
+                            <span class="color-name">
+                                Taupe
+                            </span>
+
+                        </div>
+
+
+                        <div class="color-item">
+
+                            <span
+                                class="color-swatch"
+                                style="background-color: #e2d7c5;"
+                            ></span>
+
+                            <span class="color-name">
+                                Champagne
+                            </span>
+
+                        </div>
+
+
+                        <div class="color-item">
+
+                            <span
+                                class="color-swatch"
+                                style="background-color: #cfceca;"
+                            ></span>
+
+                            <span class="color-name">
+                                Soft Gray
+                            </span>
+
+                        </div>
+
+
+                        <div class="color-item">
+
+                            <span
+                                class="color-swatch"
+                                style="background-color: #f7e7e1;"
+                            ></span>
+
+                            <span class="color-name">
+                                Blush
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SCHEDULE -->
         <section class="section section-soft" id="schedule">
+
             <div class="container">
+
                 <div class="section-title reveal">
-                    <span class="eyebrow">The Day</span>
-                    <h2>Our Schedule</h2>
+
+                    <span class="eyebrow">
+                        The Day
+                    </span>
+
+                    <h2>
+                        Our Schedule
+                    </h2>
+
                 </div>
+
+
                 <div class="schedule reveal">
+
                     <div class="schedule-row">
-                        <div class="schedule-time">3:30</div>
-                        <div class="schedule-info">
-                            <h3>Guest Arrival</h3>
-                            <p>Please arrive early and settle in.</p>
+
+                        <div class="schedule-time">
+                            3:30
                         </div>
+
+                        <div class="schedule-info">
+
+                            <h3>
+                                Guest Arrival
+                            </h3>
+
+                            <p>
+                                Please arrive early and settle in.
+                            </p>
+
+                        </div>
+
                     </div>
+
+
                     <div class="schedule-row">
->>>>>>> 9f9f8e7 (Add entourage dropdowns)
-                        <div class="schedule-time">4:00</div>
-                        <div class="schedule-info">
-                            <h3>Wedding Ceremony</h3>
-                            <p>The moment we've been waiting for.</p>
+
+                        <div class="schedule-time">
+                            4:00
                         </div>
+
+                        <div class="schedule-info">
+
+                            <h3>
+                                Wedding Ceremony
+                            </h3>
+
+                            <p>
+                                The moment we've been waiting for.
+                            </p>
+
+                        </div>
+
                     </div>
+
+
                     <div class="schedule-row">
-                        <div class="schedule-time">6:30</div>
-                        <div class="schedule-info">
-                            <h3>Reception</h3>
-                            <p>Dinner, speeches, dancing and celebration.</p>
+
+                        <div class="schedule-time">
+                            6:30
                         </div>
+
+                        <div class="schedule-info">
+
+                            <h3>
+                                Reception
+                            </h3>
+
+                            <p>
+                                Dinner, speeches, dancing and celebration.
+                            </p>
+
+                        </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
+
+        <!-- GALLERY -->
         <section class="section section-dark" id="gallery">
+
             <div class="container">
+
                 <div class="section-title reveal">
-                    <span class="eyebrow">Moments</span>
-                    <h2>Our Gallery</h2>
+
+                    <span class="eyebrow">
+                        Moments
+                    </span>
+
+                    <h2>
+                        Our Gallery
+                    </h2>
+
                 </div>
+
+
                 <div class="gallery reveal">
-                    <div class="gallery-item"><img src="images/LMN-41.jpg" alt="Wedding photo 1" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-33.jpg" alt="Wedding photo 2" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-5.jpg" alt="Wedding photo 3" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-101.jpg" alt="Wedding photo 4" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-82.jpg" alt="Wedding photo 5" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-120.jpg" alt="Wedding photo 6" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-150.jpg" alt="Wedding photo 6" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-172.jpg" alt="Wedding photo 6" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
-                    <div class="gallery-item"><img src="images/LMN-142.jpg" alt="Wedding photo 6" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"></div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-41.jpg"
+                            alt="Wedding photo 1"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-33.jpg"
+                            alt="Wedding photo 2"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-5.jpg"
+                            alt="Wedding photo 3"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-101.jpg"
+                            alt="Wedding photo 4"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-82.jpg"
+                            alt="Wedding photo 5"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-120.jpg"
+                            alt="Wedding photo 6"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-150.jpg"
+                            alt="Wedding photo 7"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-172.jpg"
+                            alt="Wedding photo 8"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
+                    <div class="gallery-item">
+                        <img
+                            src="images/LMN-142.jpg"
+                            alt="Wedding photo 9"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
+                        >
+                    </div>
+
                 </div>
+
             </div>
+
         </section>
 
+
+        <!-- ENTOURAGE -->
         <section class="section section-soft" id="entourage">
-    <div class="container">
 
-        <div class="section-title reveal">
-            <span class="eyebrow">With Us</span>
-            <h2>Our Entourage</h2>
-        </div>
-
-        <!-- BRIDESMAIDS -->
-        <div class="people-group accordion-group reveal">
-
-            <button class="people-title accordion-toggle" type="button">
-                <span>Bridesmaids</span>
-                <span class="accordion-icon">+</span>
-            </button>
-
-            <div class="accordion-content">
-                <div class="people-grid">
-
-                    <div class="person">
-                        <h4>Hilary Cabatana</h4>
-                        <span>Maid of Honor</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Shaira Mae Taguines</h4>
-                        <span>Matron of Honor</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Monica Due</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Monella Due</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Vanessa David</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Anjelica Cano</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Liz Camacho</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Sharlene Anne Sedrome</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Deniella Evangelista</h4>
-                        <span>Bridesmaid</span>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-<<<<<<< HEAD
-=======
-
-        <!-- GROOMSMEN -->
-        <div class="people-group accordion-group reveal">
-
-            <button class="people-title accordion-toggle" type="button">
-                <span>Groomsmen</span>
-                <span class="accordion-icon">+</span>
-            </button>
-
-            <div class="accordion-content">
-                <div class="people-grid">
-
-                    <div class="person">
-                        <h4>Aldus Delgado</h4>
-                        <span>Best Man</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Adrianne Tulod</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Isaiah Batac</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Jerrold Faelnar</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Kim Carlo Cruz</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Aaron Tayag</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Jhanssen Tan</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Sean Blanco</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Jeremy Taguines</h4>
-                        <span>Groomsman</span>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <!-- BEARERS & FLOWER GIRLS -->
-        <div class="people-group accordion-group reveal">
-
-            <button class="people-title accordion-toggle" type="button">
-                <span>Bearers &amp; Flower Girls</span>
-                <span class="accordion-icon">+</span>
-            </button>
-
-            <div class="accordion-content">
-                <div class="people-grid">
-
-                    <div class="person">
-                        <h4>Ezaiah Panti</h4>
-                        <span>Ringbearer</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Zane Gabriel Almadrones</h4>
-                        <span>Flower boy</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Seth Leori Blanco</h4>
-                        <span>Flower boy</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Seth Ivan Almadrones</h4>
-                        <span>Flower boy</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Audi Torres</h4>
-                        <span>Flower girl</span>
-                    </div>
-
-                    <div class="person">
-                        <h4>Kyline Frances Carreon</h4>
-                        <span>Flower girl</span>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
->>>>>>> 9f9f8e7 (Add entourage dropdowns)
-        
-
-        <section class="section section-soft" id="location">
             <div class="container">
+
                 <div class="section-title reveal">
-                    <span class="eyebrow">Location</span>
-                    <h2>Find Us</h2>
+
+                    <span class="eyebrow">
+                        With Us
+                    </span>
+
+                    <h2>
+                        Our Entourage
+                    </h2>
+
                 </div>
+
+
+                <!-- BRIDESMAIDS -->
+                <div class="people-group accordion-group reveal">
+
+                    <button
+                        class="people-title accordion-toggle"
+                        type="button"
+                    >
+                        <span>
+                            Bridesmaids
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+                    </button>
+
+
+                    <div class="accordion-content">
+
+                        <div class="people-grid">
+
+                            <div class="person">
+                                <h4>Hilary Cabatana</h4>
+                                <span>Maid of Honor</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Shaira Mae Taguines</h4>
+                                <span>Matron of Honor</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Monica Due</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Monella Due</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Vanessa David</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Anjelica Cano</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Liz Camacho</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Sharlene Anne Sedrome</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Deniella Evangelista</h4>
+                                <span>Bridesmaid</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GROOMSMEN -->
+                <div class="people-group accordion-group reveal">
+
+                    <button
+                        class="people-title accordion-toggle"
+                        type="button"
+                    >
+                        <span>
+                            Groomsmen
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+                    </button>
+
+
+                    <div class="accordion-content">
+
+                        <div class="people-grid">
+
+                            <div class="person">
+                                <h4>Aldus Delgado</h4>
+                                <span>Best Man</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Adrianne Tulod</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Isaiah Batac</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Jerrold Faelnar</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Kim Carlo Cruz</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Aaron Tayag</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Jhanssen Tan</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Sean Blanco</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Jeremy Taguines</h4>
+                                <span>Groomsman</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BEARERS + FLOWER GIRLS -->
+                <div class="people-group accordion-group reveal">
+
+                    <button
+                        class="people-title accordion-toggle"
+                        type="button"
+                    >
+                        <span>
+                            Bearers &amp; Flower Girls
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+                    </button>
+
+
+                    <div class="accordion-content">
+
+                        <div class="people-grid">
+
+                            <div class="person">
+                                <h4>Ezaiah Panti</h4>
+                                <span>Ringbearer</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Zane Gabriel Almadrones</h4>
+                                <span>Flower boy</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Seth Leori Blanco</h4>
+                                <span>Flower boy</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Seth Ivan Almadrones</h4>
+                                <span>Flower boy</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Audi Torres</h4>
+                                <span>Flower girl</span>
+                            </div>
+
+                            <div class="person">
+                                <h4>Kyline Frances Carreon</h4>
+                                <span>Flower girl</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOCATION -->
+        <section class="section section-soft" id="location">
+
+            <div class="container">
+
+                <div class="section-title reveal">
+
+                    <span class="eyebrow">
+                        Location
+                    </span>
+
+                    <h2>
+                        Find Us
+                    </h2>
+
+                </div>
+
+
                 <div class="map-wrapper reveal">
                     <div id="map"></div>
                 </div>
+
+
                 <div style="text-align:center; margin-top:25px;">
-                    <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener" class="btn" id="mapDirections">Open Map</a>
-                </div>
-            </div>
-        </section>
 
-        <section class="section section-dark" id="faq">
-            <div class="container">
-                <div class="section-title reveal">
-                    <span class="eyebrow">Questions</span>
-                    <h2>FAQ</h2>
-                </div>
-                <div class="faq reveal">
-                    <div class="faq-item">
-                        <button class="faq-question" type="button">
-                            <span>What should I wear?</span>
-                            <span class="faq-plus">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Please follow the formal dress code indicated in the wedding details section.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" type="button">
-                            <span>Can I bring a plus one?</span>
-                            <span class="faq-plus">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Please refer to your invitation or contact the couple if you are unsure.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" type="button">
-                            <span>Is parking available?</span>
-                            <span class="faq-plus">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Yes</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" type="button">
-                            <span>How do I RSVP?</span>
-                            <span class="faq-plus">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Simply complete the RSVP form below before the requested deadline.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section rsvp-section" id="rsvp">
-            <div class="container">
-                <div class="section-title reveal">
-                    <span class="eyebrow">Kindly Respond</span>
-                    <h2>RSVP</h2>
-                </div>
-                <div class="rsvp-box reveal">
-                    <div class="rsvp-intro">
-                        <h3>Will you join us?</h3>
-                        <p>Please let us know if you'll be celebrating with us.</p>
-                    </div>
-                    <form id="rsvpForm">
-    <div class="form-grid">
-
-        <div class="form-group full">
-    <label for="guestName">Full Name</label>
-
-    <div class="name-input-wrapper">
-        <input
-            id="guestName"
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            autocomplete="off"
-            required
-        >
-
-        <div id="nameSuggestions" class="suggestions"></div>
-    </div>
-</div>
-
-        <div class="form-group full">
-            <button type="button" class="btn btn-filled" id="findGuestButton">
-                Find My Invitation
-            </button>
-        </div>
-
-        <div id="guestInvitation" class="form-group full" style="display:none;">
-            <div id="guestGreeting"></div>
-        </div>
-
-        <div id="rsvpFields" style="display:none; grid-column:1 / -1;">
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label for="attendance">Attendance</label>
-                    <select id="attendance" name="attendance">
-    <option value="Attending">Happily attending</option>
-    <option value="Declined">Sadly unable to attend (I’ll give cash gift instead)</option>
-</select>
-                </div>
-
-                <div class="form-group">
-                    <label for="guests">Number of Guests</label>
-                    <select id="guests" name="number_of_guests"></select>
-                </div>
-
-                <div class="form-group full">
-                    <label for="plusOneName">Plus-One Name</label>
-                    <input
-                        id="plusOneName"
-                        type="text"
-                        name="plus_one_name"
-                        placeholder="Name of your plus-one (if applicable)"
+                    <a
+                        href="https://www.openstreetmap.org/"
+                        target="_blank"
+                        rel="noopener"
+                        class="btn"
+                        id="mapDirections"
                     >
-                </div>
+                        Open Map
+                    </a>
 
-                <div class="form-group full">
-                    <label for="message">Message</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Leave a message for the couple..."
-                    ></textarea>
                 </div>
 
             </div>
-        </div>
 
-    </div>
-
-    <div id="submitArea" class="form-submit" style="display:none;">
-        <button type="submit" class="btn btn-filled">Send RSVP</button>
-    </div>
-
-    <div class="rsvp-message" id="rsvpMessage"></div>
-</form>
-                </div>
-            </div>
         </section>
 
 
+        <!-- FAQ -->
+        <section class="section section-dark" id="faq">
 
-        <footer>
-            <div class="footer-names">CED &amp; MO</div>
-            <div class="ornament">
-                <span class="ornament-symbol">❦</span>
+            <div class="container">
+
+                <div class="section-title reveal">
+
+                    <span class="eyebrow">
+                        Questions
+                    </span>
+
+                    <h2>
+                        FAQ
+                    </h2>
+
+                </div>
+
+
+                <div class="faq reveal">
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                        >
+                            <span>
+                                What should I wear?
+                            </span>
+
+                            <span class="faq-plus">
+                                +
+                            </span>
+                        </button>
+
+                        <div class="faq-answer">
+                            <p>
+                                Please follow the formal dress code indicated in the wedding details section.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                        >
+                            <span>
+                                Can I bring a plus one?
+                            </span>
+
+                            <span class="faq-plus">
+                                +
+                            </span>
+                        </button>
+
+                        <div class="faq-answer">
+                            <p>
+                                Please refer to your invitation or contact the couple if you are unsure.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                        >
+                            <span>
+                                Is parking available?
+                            </span>
+
+                            <span class="faq-plus">
+                                +
+                            </span>
+                        </button>
+
+                        <div class="faq-answer">
+                            <p>
+                                Yes
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="faq-item">
+
+                        <button
+                            class="faq-question"
+                            type="button"
+                        >
+                            <span>
+                                How do I RSVP?
+                            </span>
+
+                            <span class="faq-plus">
+                                +
+                            </span>
+                        </button>
+
+                        <div class="faq-answer">
+                            <p>
+                                Simply complete the RSVP form below before the requested deadline.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-            <div class="footer-date">NOVEMBER 22, 2026 · PAMPANGA</div>
-            <div class="footer-credit">Made with love for our special day</div>
+
+        </section>
+
+
+        <!-- RSVP -->
+        <section class="section rsvp-section" id="rsvp">
+
+            <div class="container">
+
+                <div class="section-title reveal">
+
+                    <span class="eyebrow">
+                        Kindly Respond
+                    </span>
+
+                    <h2>
+                        RSVP
+                    </h2>
+
+                </div>
+
+
+                <div class="rsvp-box reveal">
+
+                    <div class="rsvp-intro">
+
+                        <h3>
+                            Will you join us?
+                        </h3>
+
+                        <p>
+                            Please let us know if you'll be celebrating with us.
+                        </p>
+
+                    </div>
+
+
+                    <form id="rsvpForm">
+
+                        <div class="form-grid">
+
+
+                            <!-- NAME -->
+                            <div class="form-group full">
+
+                                <label for="guestName">
+                                    Full Name
+                                </label>
+
+                                <div class="name-input-wrapper">
+
+                                    <input
+                                        id="guestName"
+                                        type="text"
+                                        name="name"
+                                        placeholder="Enter your name"
+                                        autocomplete="off"
+                                        required
+                                    >
+
+                                    <div
+                                        id="nameSuggestions"
+                                        class="suggestions"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FIND INVITATION -->
+                            <div class="form-group full">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-filled"
+                                    id="findGuestButton"
+                                >
+                                    Find My Invitation
+                                </button>
+
+                            </div>
+
+
+                            <!-- GUEST INVITATION -->
+                            <div
+                                id="guestInvitation"
+                                class="form-group full"
+                                style="display:none;"
+                            >
+
+                                <div id="guestGreeting"></div>
+
+                            </div>
+
+
+                            <!-- RSVP FIELDS -->
+                            <div
+                                id="rsvpFields"
+                                style="display:none; grid-column:1 / -1;"
+                            >
+
+                                <div class="form-grid">
+
+
+                                    <div class="form-group">
+
+                                        <label for="attendance">
+                                            Attendance
+                                        </label>
+
+                                        <select
+                                            id="attendance"
+                                            name="attendance"
+                                        >
+                                            <option value="Attending">
+                                                Happily attending
+                                            </option>
+
+                                            <option value="Declined">
+                                                Sadly unable to attend (I’ll give cash gift instead)
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="guests">
+                                            Number of Guests
+                                        </label>
+
+                                        <select
+                                            id="guests"
+                                            name="number_of_guests"
+                                        ></select>
+
+                                    </div>
+
+
+                                    <div class="form-group full">
+
+                                        <label for="plusOneName">
+                                            Plus-One Name
+                                        </label>
+
+                                        <input
+                                            id="plusOneName"
+                                            type="text"
+                                            name="plus_one_name"
+                                            placeholder="Name of your plus-one (if applicable)"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group full">
+
+                                        <label for="message">
+                                            Message
+                                        </label>
+
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            placeholder="Leave a message for the couple..."
+                                        ></textarea>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SUBMIT -->
+                        <div
+                            id="submitArea"
+                            class="form-submit"
+                            style="display:none;"
+                        >
+
+                            <button
+                                type="submit"
+                                class="btn btn-filled"
+                            >
+                                Send RSVP
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="rsvp-message"
+                            id="rsvpMessage"
+                        ></div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-names">
+                CED &amp; MO
+            </div>
+
+            <div class="ornament">
+                <span class="ornament-symbol">
+                    ❦
+                </span>
+            </div>
+
+            <div class="footer-date">
+                NOVEMBER 22, 2026 · PAMPANGA
+            </div>
+
+            <div class="footer-credit">
+                Made with love for our special day
+            </div>
+
         </footer>
+
     </main>
 
+
+    <!-- MOBILE NAV -->
     <nav class="mobile-bottom-nav">
-        <a href="#home"><span>⌂</span><span>Home</span></a>
-        <a href="#story"><span>♡</span><span>Story</span></a>
-        <a href="#details"><span>♢</span><span>Details</span></a>
-        <a href="#gallery"><span>▧</span><span>Gallery</span></a>
-        <a href="#rsvp"><span>✉</span><span>RSVP</span></a>
+
+        <a href="#home">
+            <span>⌂</span>
+            <span>Home</span>
+        </a>
+
+        <a href="#story">
+            <span>♡</span>
+            <span>Story</span>
+        </a>
+
+        <a href="#details">
+            <span>♢</span>
+            <span>Details</span>
+        </a>
+
+        <a href="#gallery">
+            <span>▧</span>
+            <span>Gallery</span>
+        </a>
+
+        <a href="#rsvp">
+            <span>✉</span>
+            <span>RSVP</span>
+        </a>
+
     </nav>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- SCRIPTS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
-    
     <script src="script.js"></script>
+
 </body>
 </html>
