@@ -1461,7 +1461,7 @@ const GUEST_LIST = [
             if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
             if (difference <= 0) {
-                daysEl.textContent = "000";
+                daysEl.textContent = "00";
                 hoursEl.textContent = "00";
                 minutesEl.textContent = "00";
                 secondsEl.textContent = "00";
