@@ -301,6 +301,8 @@
             justify-content: center;
             overflow: hidden;
             background: #090908;
+            background-position: center 95%;
+            
         }
 
         .hero-image {
@@ -311,9 +313,10 @@
             rgba(0,0,0,.25),
             rgba(0,0,0,.50) 50%,
             rgba(0,0,0,.88)
-            ), url("images/LMN-89.jpg");
-            background-size: cover;
-            background-position: 35% 49% center;
+            ), url("images/Lmn129.jpg");
+            background-size: 110% auto;
+            background-position:55% 120%;
+            background-repeat: no-repeat;
             filter: saturate(.85);
         }
 
@@ -696,7 +699,7 @@
            ===================================================== */
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 1px;
             background: var(--line);
             border: 1px solid var(--line);
@@ -736,14 +739,61 @@
             color: var(--muted);
         }
 
-        .color-palette {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
+        .colors-section {
+    padding: 120px 0;
+    text-align: center;
+}
 
+.colors-intro {
+    margin-top: 15px;
+}
+
+.colors-content {
+    margin-top: 70px;
+}
+
+.colors-monogram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.colors-monogram img {
+    width: 150px;
+    height: auto;
+    display: block;
+}
+
+.color-palette-large {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.color-swatch {
+   display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.color-name {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
         .swatch {
             width: 28px;
             height: 28px;
@@ -1560,6 +1610,67 @@ footer .footer-credit {
 
 @media (max-width: 768px) {
     .hero-image {
-        background-position: 45% center;
+         background-size: auto 110%;
+        background-position: 50% 350%;
     }
+}
+
+/* Entourage Accordion */
+
+.accordion-group {
+    border-top: 1px solid rgba(154, 124, 69, 0.35);
+}
+
+.accordion-group:last-child {
+    border-bottom: 1px solid rgba(154, 124, 69, 0.35);
+}
+
+.accordion-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 10px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+}
+
+.accordion-toggle:hover {
+    opacity: 0.8;
+}
+
+.accordion-icon {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s ease;
+}
+
+.accordion-content > .people-grid {
+    overflow: hidden;
+    min-height: 0;
+    padding-bottom: 0;
+    transition: padding 0.45s ease;
+}
+
+.accordion-group.active .accordion-content {
+    grid-template-rows: 1fr;
+}
+
+.accordion-group.active .accordion-content > .people-grid {
+    padding-bottom: 35px;
+}
+
+.accordion-group.active .accordion-icon {
+    transform: rotate(45deg);
 }
