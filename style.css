@@ -1905,7 +1905,7 @@ footer .footer-credit {
 
 
 .colors-section {
-    background: #6464632f;
+    background: #42423e75;
 }
 
 .colors-section .section-title h2,
@@ -1917,9 +1917,9 @@ footer .footer-credit {
 
 .colors-section .color-name {
     color: #fffffe;
-    font-size: 15px;
+    font-size: 9px;
 }
 
 *{
-    font-size:15px;
+    font-size:9px;
 }
