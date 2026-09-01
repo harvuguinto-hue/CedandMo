@@ -756,7 +756,7 @@
 }
 
 .colors-content {
-    margin-top: 70px;
+    margin-top: -30px;
 }
 
 .colors-monogram {
@@ -778,6 +778,7 @@
     align-items: stretch;
     gap: 18px;
     flex-wrap: wrap;
+    transform: translateY(-40px);
 }
 
 .color-item {
@@ -1404,7 +1405,44 @@
                 transition: none !important;
             }
         }
+@media (max-width: 768px) {
 
+    .colors-section {
+        overflow: hidden;
+    }
+
+    .colors-content {
+        width: 100%;
+    }
+
+    .dress {
+        width: 108%;
+    margin-left: -4%;
+    }
+
+    
+
+    .color-item {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+    }
+
+    .color-swatch {
+        width: 52px;
+        height: 52px;
+        display: block;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+    }
+
+    .color-name {
+        font-size: 9px;
+        letter-spacing: 1.2px;
+        white-space: nowrap;
+    }
+
+}
 
 /* =====================================================
    RSVP NAME AUTOCOMPLETE
@@ -1838,6 +1876,7 @@ footer .footer-credit {
     color: #f3eee3;
     line-height: 0.9;
     margin-bottom: 15px;
+    font-size: 50%;
 }
 
 .loader-monogram {
@@ -1845,4 +1884,19 @@ footer .footer-credit {
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+
+.colors-section {
+    background: #6464632f;
+}
+
+.colors-section .section-title h2,
+.colors-section .eyebrow,
+.colors-section .colors-intro {
+    color: #f0f0f0;
+}
+
+.colors-section .color-name {
+    color: #eeece9;
 }
