@@ -2061,10 +2061,12 @@ body {
 
 .countdown-number {
     font-size: clamp(27px, 5vw, 48px);
+    font-family: "Montserrat", sans-serif;
+    
 }
 
 .countdown-name {
-    font-size: clamp(6px, .7vw, 8px);
+    font-size: clamp(15px, .7vw, 8px);
     letter-spacing: clamp(1px, .2vw, 2px);
 }
 
