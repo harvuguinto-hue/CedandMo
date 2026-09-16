@@ -29,15 +29,23 @@
 
         html {
             scroll-behavior: smooth;
+            height: 100%;
         }
 
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100dvh;
             background: var(--black);
             color: var(--cream);
             font-family: var(--sans);
             font-weight: 300;
             line-height: 1.7;
             overflow-x: hidden;
+        }
+
+        main {
+            flex: 1;
         }
 
         img {
@@ -1654,11 +1662,12 @@ footer .footer-credit {
 
 @media (max-width: 768px) {
     .hero-image {
-         background-size: auto 110%;
-        background-position: 50% 350%;
-    }
+         background-size: auto 115%;
+        background-position: 50% 60%;
+    }   
+     
 
-     .color-swatch {
+     .color-swatch {    
         width: 14px;
         height: 14px;
         margin: 0 auto 14px;
@@ -1887,13 +1896,12 @@ footer .footer-credit {
 
 .hero-names {
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(90px, 9vw, 150px);
+    font-size: clamp(80px, 10vw, 160px);
     font-weight: 400;
     letter-spacing: -3px;
     color: #f3eee3;
     line-height: 0.9;
     margin-bottom: 15px;
-    font-size: 50%;
 }
 
 .loader-monogram {
@@ -1942,7 +1950,7 @@ body {
 /* Sections for between phones and large screens. */
 .section {
     padding: clamp(70px, 8vw, 130px) 0;
-}
+}   
 
 .section-title {
     margin-bottom: clamp(38px, 5vw, 60px);
@@ -2491,11 +2499,212 @@ footer .footer-credit {
 }
 
 /* ============================================================
-   IMPORTANT EXISTING-CSS CORRECTION
-   The original .hero-names rule ended with font-size: 50%;
-   which overrides its clamp() value. Restore the intended fluid
-   typography here.
+   .hero-names is now consolidated into a single fluid
+   responsive declaration with no conflicting overrides.
    ============================================================ */
-.hero-names {
-    font-size: clamp(48px, 11vw, 150px);
+
+/* ============================================================
+   EDITORIAL HERO REFINEMENT
+   The landscape image is deliberately framed around the couple
+   on phones: open night sky provides room for the invitation copy.
+   ============================================================ */
+@media (min-width: 701px) {
+    .hero-image {
+        /* Raise the portrait to place its shoulders above the names. */
+        background-position: 55% 170%;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        padding-top: 20px;
+    }
+
+    .nav-logo {
+        justify-content: flex-start;
+    }
+
+    .mobile-menu-button {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--cream);
+        font-size: 28px;
+        line-height: 1;
+    }
+
+    .hero {
+        min-height: calc(100svh - 68px);
+    }
+
+    .hero-image {
+        /* Raise the portrait to place its shoulders above the names. */
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, .42) 0%,
+                rgba(0, 0, 0, .04) 48%,
+                rgba(0, 0, 0, .16) 100%
+            ),
+            url("images/Lmn129.jpg");
+        background-size: auto 185%;
+        background-position: 50% 100%;
+        filter: saturate(.95) contrast(1.03) brightness(1.18);
+    }
+
+    .hero-image::before,
+    .hero-image::after {
+        display: none;
+    }
+
+    .hero-content {
+        min-height: calc(100svh - 68px);
+        justify-content: center;
+        padding: 112px 28px 72px;
+    }
+
+    .hero-names {
+        font-size: clamp(48px, 13vw, 62px);
+        line-height: .86;
+        letter-spacing: -1.8px;
+        margin-bottom: 13px;
+    }
+
+    .hero-pretitle {
+        font-size: clamp(19px, 5.2vw, 24px);
+    }
+
+    .hero-date {
+        margin-top: 25px;
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .hero-location {
+        max-width: 280px;
+        margin-top: 9px;
+        font-size: 7px;
+        letter-spacing: 1.8px;
+    }
+
+    .hero-actions {
+        margin-top: 29px;
+    }
+
+    .hero-actions .btn {
+        width: 148px;
+        min-height: 43px;
+    }
+}
+
+.faq-answer strong {
+    font-weight: 700;
+}
+
+/* ============================================================
+   DEVICE-INDEPENDENT HERO COMPOSITION
+   The portrait uses the hero height as its reference, rather than the
+   viewport width. This keeps the shoulder line and the name block in the
+   same relationship on portrait, landscape, and ultrawide screens.
+   ============================================================ */
+.hero {
+    --couple-shoulder-line: 52.4%;
+    overflow: hidden;
+    background: #050505;
+}
+
+/* A subdued full-bleed layer fills extra width on very wide displays. */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    z-index: 0;
+    background:
+        linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),
+        url("images/Lmn129.jpg") center / cover no-repeat;
+    filter: blur(12px);
+    opacity: .42;
+}
+
+.hero-image {
+    z-index: 1;
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, .44) 0%,
+            rgba(0, 0, 0, .08) 48%,
+            rgba(0, 0, 0, .25) 100%
+        ),
+        url("images/Lmn129.jpg");
+    background-size: 100% 100%, auto 140%;
+    background-position: center, center bottom;
+    background-repeat: no-repeat;
+    filter: saturate(.9) contrast(1.04);
+}
+
+.hero-image::before,
+.hero-image::after {
+    display: none;
+}
+
+.hero-content {
+    position: absolute;
+    top: calc(var(--couple-shoulder-line) + 3.6%);
+    left: 50%;
+    right: auto;
+    z-index: 2;
+    width: min(900px, 100%);
+    min-height: 0;
+    padding: 0 20px;
+    transform: translateX(-50%);
+    isolation: isolate;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .95);
+}
+
+.hero-content::before {
+    content: "";
+    position: absolute;
+    inset: -42px -90px;
+    z-index: -1;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, .62) 0%,
+        rgba(0, 0, 0, .35) 48%,
+        transparent 76%
+    );
+    filter: blur(9px);
+    pointer-events: none;
+}
+
+.hero-names,
+.hero-pretitle,
+.hero-date,
+.hero-location {
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, .95),
+        0 0 18px rgba(0, 0, 0, .8);
+}
+
+@media (min-width: 701px) {
+    .hero-content {
+        /* Desktop has more vertical room; bring the names closer to the
+           shoulder line without altering the working phone composition. */
+        top: calc(var(--couple-shoulder-line) + 1%);
+    }
+}
+
+@media (max-width: 700px) {
+    .hero-content {
+        top: calc(var(--couple-shoulder-line) + 3.6%);
+        min-height: 0;
+        padding: 0 22px;
+    }
+
+    .hero-location {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
 }
