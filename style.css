@@ -2708,3 +2708,61 @@ footer .footer-credit {
         text-align: center;
     }
 }
+
+/* Footer uses one centered content axis at every viewport width. */
+footer {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+footer > * {
+    width: min(100%, 900px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer .footer-names {
+    font-size: clamp(48px, 9vw, 100px);
+    line-height: .9;
+}
+
+footer .footer-date {
+    max-width: min(100%, 480px);
+    font-size: clamp(8px, .8vw, 10px);
+    letter-spacing: clamp(2px, .45vw, 5px);
+    text-align: center;
+}
+
+footer .footer-credit {
+    max-width: min(100%, 420px);
+    font-size: clamp(7px, .7vw, 9px);
+    letter-spacing: clamp(1px, .22vw, 2.5px);
+    text-align: center;
+}
+
+/* Match the hero's couple-above-copy composition in the footer. */
+footer {
+    position: relative;
+    isolation: isolate;
+    background-size: 100% 100%, auto 200%;
+    background-position: center, center bottom;
+    background-repeat: no-repeat, no-repeat;
+}
+
+/* Fade the footer image in from the preceding dark section. */
+footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        #080807 0,
+        rgba(8, 8, 7, .42) 14%,
+        rgba(8, 8, 7, .12) 28%,
+        transparent 44%
+    );
+}
