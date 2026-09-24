@@ -2083,28 +2083,27 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Show popup shortly after the website loads
+    // Show popup
     setTimeout(function () {
 
+        prenupPopup.classList.remove("hidden");
+
+        // Attempt autoplay WITH SOUND
         prenupVideo.muted = false;
+        prenupVideo.volume = 1;
 
-prenupVideo.play().catch(function (error) {
+        const playPromise = prenupVideo.play();
 
-    console.log("Autoplay with sound was blocked:", error);
-
-    // Show play button if autoplay is blocked
-    const playButton = document.getElementById("prenupPlayButton");
-
-    if (playButton) {
-        playButton.classList.add("show");
-    }
-
-});
+        if (playPromise !== undefined) {
+            playPromise.catch(function (error) {
+                console.log("Autoplay with sound was blocked by the browser:", error);
+            });
+        }
 
     }, 500);
 
 
-    // Close popup
+    // Close button
     closePrenup.addEventListener("click", function () {
 
         prenupVideo.pause();
@@ -2113,7 +2112,7 @@ prenupVideo.play().catch(function (error) {
     });
 
 
-    // Close when clicking outside the video
+    // Click outside video to close
     prenupPopup.addEventListener("click", function (event) {
 
         if (event.target === prenupPopup) {
@@ -2126,7 +2125,7 @@ prenupVideo.play().catch(function (error) {
     });
 
 
-    // ESC key closes popup
+    // ESC to close
     document.addEventListener("keydown", function (event) {
 
         if (event.key === "Escape") {
