@@ -1576,49 +1576,9 @@ const GUEST_LIST = [
             }
         }
 
-        // =====================================================
-        // QR CODE
-        // =====================================================
-        const qrContainer = document.getElementById("qrcode");
+       
 
-        if (qrContainer && typeof QRCode !== "undefined") {
-            new QRCode(qrContainer, {
-                text: CONFIG.qrUrl,
-                width: 220,
-                height: 220,
-                colorDark: "#111111",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-
-            const downloadQR = document.getElementById("downloadQR");
-
-            if (downloadQR) {
-                downloadQR.addEventListener("click", function () {
-                    const canvas = qrContainer.querySelector("canvas");
-                    const image = qrContainer.querySelector("img");
-
-                    const url = canvas
-                        ? canvas.toDataURL("image/png")
-                        : image
-                            ? image.src
-                            : null;
-
-                    if (!url) {
-                        alert("QR code is not ready yet.");
-                        return;
-                    }
-
-                    const link = document.createElement("a");
-                    link.href = url;
-                    link.download = "wedding-qr-code.png";
-                    document.body.appendChild(link);
-                    link.click();
-                    link.remove();
-                });
-            }
-        }
-
+           
         // =====================================================
         // RSVP — GOOGLE SHEETS LOOKUP
         // =====================================================
@@ -1841,16 +1801,16 @@ if (guestNameInput && nameSuggestions) {
 
         const searchText = this.value.trim().toLowerCase();
 
-        // Clear old suggestions
+        
         nameSuggestions.innerHTML = "";
 
-        // Hide suggestions if nothing is typed
+       
         if (!searchText) {
             nameSuggestions.style.display = "none";
             return;
         }
 
-        // Search the existing guest list
+        
         
        const matches = GUEST_LIST.filter(function (guest) {
     return guest.name.toLowerCase().startsWith(searchText);
@@ -1858,16 +1818,16 @@ if (guestNameInput && nameSuggestions) {
 
 const limitedMatches = matches.slice(0, 3);
 
-        // Show only the first 6 matches
+        
        
 
-        // Hide if there are no matches
+        
         if (limitedMatches.length === 0) {
             nameSuggestions.style.display = "none";
             return;
         }
 
-        // Create each suggestion
+       
         limitedMatches.forEach(function (guest) {
 
             const suggestion = document.createElement("div");
@@ -1878,26 +1838,26 @@ const limitedMatches = matches.slice(0, 3);
 
             suggestion.addEventListener("click", function () {
 
-                // Put the selected guest's name into the input
+                
                 guestNameInput.value = guest.name;
 
-                // Clear and hide suggestions
+                
                 nameSuggestions.innerHTML = "";
                 nameSuggestions.style.display = "none";
 
-                // Keep the input focused
+                
                 guestNameInput.focus();
             });
 
             nameSuggestions.appendChild(suggestion);
         });
 
-        // Show suggestions
+        
         nameSuggestions.style.display = "block";
     });
 
 
-    // Hide suggestions when clicking outside
+    
     document.addEventListener("click", function (event) {
 
         if (!event.target.closest(".name-input-wrapper")) {
@@ -1960,8 +1920,7 @@ const limitedMatches = matches.slice(0, 3);
                         ? Number(guestsSelect.value || 1)
                         : 0;
 
-                    // Google Apps Script is more reliable here with a GET request.
-                    // The API validates the guest ID server-side before writing to the sheet.
+                 
                     const params = new URLSearchParams();
                     params.set("action", "submitRSVP");
                     params.set("guestId", String(currentGuest.id || ""));
@@ -2010,9 +1969,7 @@ const limitedMatches = matches.slice(0, 3);
             });
         }
 
-        // =====================================================
-        // PREVENT IMAGE DRAGGING
-        // =====================================================
+        
         document.querySelectorAll("img").forEach(function (image) {
             image.addEventListener("dragstart", function (event) {
                 event.preventDefault();
@@ -2034,12 +1991,7 @@ const limitedMatches = matches.slice(0, 3);
     });
 });
 
-// =====================================================
-// PRENUP VIDEO AUTOPLAY ON SCROLL
-// =====================================================
-// =====================================================
-// PRENUP SECTION VIDEO AUTOPLAY
-// =====================================================
+
 
 const prenupSectionVideo = document.getElementById("prenupSectionVideo");
 
@@ -2075,42 +2027,38 @@ if (prenupSectionVideo && "IntersectionObserver" in window) {
     sectionVideoObserver.observe(prenupSectionVideo);
 }
 
-
-// =========================================
-// PRENUP VIDEO POPUP
-// =========================================
-
 document.addEventListener("DOMContentLoaded", function () {
 
     const prenupPopup = document.getElementById("prenupPopup");
     const prenupVideo = document.getElementById("prenupPopupVideo");
     const closePrenup = document.getElementById("closePrenup");
 
-    if (!prenupPopup || !prenupVideo || !closePrenup) {
-        return;
-    }
+    if (!prenupPopup || !prenupVideo || !closePrenup) return;
 
-    // Show popup
     setTimeout(function () {
 
         prenupPopup.classList.remove("hidden");
 
-        // Attempt autoplay WITH SOUND
-        prenupVideo.muted = false;
-        prenupVideo.volume = 1;
+        // Muted autoplay is allowed by browsers
+        prenupVideo.muted = true;
 
-        const playPromise = prenupVideo.play();
-
-        if (playPromise !== undefined) {
-            playPromise.catch(function (error) {
-                console.log("Autoplay with sound was blocked by the browser:", error);
-            });
-        }
+        prenupVideo.play().catch(function (error) {
+            console.log("Autoplay blocked:", error);
+        });
 
     }, 500);
 
 
-    // Close button
+   
+    prenupVideo.addEventListener("click", function () {
+
+        prenupVideo.muted = false;
+
+        prenupVideo.play().catch(function () {});
+
+    });
+
+
     closePrenup.addEventListener("click", function () {
 
         prenupVideo.pause();
@@ -2119,7 +2067,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // Click outside video to close
     prenupPopup.addEventListener("click", function (event) {
 
         if (event.target === prenupPopup) {
@@ -2132,7 +2079,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // ESC to close
     document.addEventListener("keydown", function (event) {
 
         if (event.key === "Escape") {
@@ -2145,5 +2091,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+// =========================================
+// PRENUP VIDEO POPUP
+// =========================================
 
 
