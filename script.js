@@ -1793,79 +1793,129 @@ const GUEST_LIST = [
 // RSVP NAME AUTOCOMPLETE
 // =====================================================
 
-const nameSuggestions = document.getElementById("nameSuggestions");
+// RSVP NAME AUTOCOMPLETE — LIVE GOOGLE SHEET
+// =====================================================
+
+const nameSuggestions =
+    document.getElementById("nameSuggestions");
+
+let searchTimeout = null;
 
 if (guestNameInput && nameSuggestions) {
 
     guestNameInput.addEventListener("input", function () {
 
-        const searchText = this.value.trim().toLowerCase();
+        const searchText =
+            this.value.trim().toLowerCase();
 
-        
         nameSuggestions.innerHTML = "";
+        nameSuggestions.style.display = "none";
 
-       
         if (!searchText) {
-            nameSuggestions.style.display = "none";
             return;
         }
 
-        
-        
-       const matches = GUEST_LIST.filter(function (guest) {
-    return guest.name.toLowerCase().startsWith(searchText);
-});
+        clearTimeout(searchTimeout);
 
-const limitedMatches = matches.slice(0, 3);
+        searchTimeout = setTimeout(async function () {
 
-        
-       
+            try {
 
-        
-        if (limitedMatches.length === 0) {
-            nameSuggestions.style.display = "none";
-            return;
-        }
+                const url =
+                    `${CONFIG.rsvpApiUrl}?action=searchGuests&query=${encodeURIComponent(searchText)}`;
 
-       
-        limitedMatches.forEach(function (guest) {
+                const response = await fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                });
 
-            const suggestion = document.createElement("div");
+                if (!response.ok) {
+                    throw new Error("Guest search failed.");
+                }
 
-            suggestion.className = "suggestion-item";
+                const result = await response.json();
 
-            suggestion.textContent = guest.name;
+                // Ignore an older request if the user has typed something new.
+                if (
+                    guestNameInput.value.trim().toLowerCase() !== searchText
+                ) {
+                    return;
+                }
 
-            suggestion.addEventListener("click", function () {
+                if (
+                    !result.success ||
+                    !Array.isArray(result.guests) ||
+                    result.guests.length === 0
+                ) {
+                    return;
+                }
 
-                
-                guestNameInput.value = guest.name;
+                nameSuggestions.innerHTML = "";
 
-                
+                result.guests.forEach(function (guest) {
+
+                    const suggestion =
+                        document.createElement("div");
+
+                    suggestion.className =
+                        "suggestion-item";
+
+                    suggestion.textContent =
+                        guest.name;
+
+                    suggestion.addEventListener(
+                        "click",
+                        function () {
+
+                            guestNameInput.value =
+                                guest.name;
+
+                            nameSuggestions.innerHTML =
+                                "";
+
+                            nameSuggestions.style.display =
+                                "none";
+
+                            guestNameInput.focus();
+                        }
+                    );
+
+                    nameSuggestions.appendChild(
+                        suggestion
+                    );
+
+                });
+
+                nameSuggestions.style.display =
+                    "block";
+
+            } catch (error) {
+
+                console.error(
+                    "Guest autocomplete error:",
+                    error
+                );
+
                 nameSuggestions.innerHTML = "";
                 nameSuggestions.style.display = "none";
+            }
 
-                
-                guestNameInput.focus();
-            });
+        }, 250);
 
-            nameSuggestions.appendChild(suggestion);
-        });
-
-        
-        nameSuggestions.style.display = "block";
     });
 
 
-    
     document.addEventListener("click", function (event) {
 
         if (!event.target.closest(".name-input-wrapper")) {
+
             nameSuggestions.innerHTML = "";
             nameSuggestions.style.display = "none";
+
         }
 
     });
+
 }
 
         if (attendance) {
