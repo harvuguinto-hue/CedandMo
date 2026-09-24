@@ -1333,13 +1333,29 @@
 
 
     <!-- PRENUP VIDEO POPUP -->
-<div id="prenupPopup" class="prenup-popup">
+<div id="prenupPopup" class="prenup-popup hidden">
+
+    <button id="closePrenup" class="close-prenup" aria-label="Close">
+        ×
+    </button>
 
     <div class="prenup-popup-content">
 
-        <button id="closePrenup" class="prenup-close" aria-label="Close">
-            &times;
-        </button>
+        <div class="prenup-popup-heading">
+
+            <span class="prenup-popup-eyebrow">
+                
+            </span>
+
+            <h3>
+                Take a sneak peek at our pre-wedding video! 👀
+            </h3>
+
+            <div class="prenup-popup-divider">
+                <span>♥</span>
+            </div>
+
+        </div>
 
         <video
             id="prenupPopupVideo"
@@ -1351,8 +1367,6 @@
             <source src="video/prenup-mobile.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-
-    
 
     </div>
 

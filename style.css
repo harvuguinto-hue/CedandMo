@@ -2811,6 +2811,8 @@ footer::before {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 
     animation: prenupPopupIn 0.45s ease;
+
+     transform: translateY(70px);
 }
 
 .prenup-popup-content video {
@@ -2944,4 +2946,169 @@ footer::before {
 
 .prenup-play-button:hover {
     transform: translate(-50%, -50%) scale(1.05);
+}
+
+.prenup-popup-content {
+    position: relative;
+    width: min(88vw, 780px);
+    text-align: center;
+    margin: auto;
+}
+
+.prenup-popup-heading {
+    margin-bottom: 22px;
+    color: #fff;
+}
+
+.prenup-popup-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.prenup-popup-heading h3 {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.2px;
+}
+
+.prenup-popup-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+    opacity: 0.7;
+}
+
+.prenup-popup-divider::before,
+.prenup-popup-divider::after {
+    content: "";
+    width: 45px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.prenup-popup-divider span {
+    font-size: 12px;
+}
+
+#prenupPopupVideo {
+    display: block;
+    width: 100%;
+    max-height: 72vh;
+    border-radius: 10px;
+    background: #000;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 600px) {
+
+    .prenup-popup {
+        padding: 20px 12px;
+    }
+
+    .prenup-popup-content {
+        width: 94vw;
+        max-width: 420px;
+    }
+
+    /* Small heading */
+    .prenup-popup-heading {
+        margin-bottom: 12px;
+    }
+
+    .prenup-popup-eyebrow {
+        font-size: 8px;
+        letter-spacing: 1.8px;
+        margin-bottom: 5px;
+        
+    }
+
+    .prenup-popup-heading h3 {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--muted);
+    letter-spacing: 0;
+}
+
+    /* Small divider */
+    .prenup-popup-divider {
+        margin-top: 7px;
+        gap: 7px;
+    }
+
+    .prenup-popup-divider::before,
+    .prenup-popup-divider::after {
+        width: 25px;
+    }
+
+    .prenup-popup-divider span {
+        font-size: 9px;
+    }
+
+    /* Keep video natural */
+    #prenupPopupVideo {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 6px;
+        background: #000;
+    }
+
+    /* SIMPLE CLOSE BUTTON */
+    .close-prenup {
+        position: absolute;
+
+        top: -45px;
+        right: 0;
+
+        width: 30px;
+        height: 30px;
+
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+
+        font-size: 18px;
+        font-weight: 400;
+
+        line-height: 30px;
+        text-align: center;
+
+        cursor: pointer;
+    }
+
+}
+
+/* ==============================
+   PRENUP POPUP TEXT
+   ============================== */
+
+#prenupPopup .prenup-popup-heading h3 {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: var(--sans) !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+
+    color: var(--muted) !important;
+    opacity: 0.8 !important;
 }
