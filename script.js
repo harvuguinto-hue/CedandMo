@@ -1576,7 +1576,7 @@ const GUEST_LIST = [
             }
         }
 
-       
+      
 
            
         // =====================================================
@@ -1979,53 +1979,9 @@ const limitedMatches = matches.slice(0, 3);
         document.title = `${CONFIG.couple.display} — Our Wedding`;
 
 
-        document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".accordion-toggle").forEach((button) => {
-        button.addEventListener("click", () => {
-            const group = button.closest(".accordion-group");
-
-            if (!group) return;
-
-            group.classList.toggle("active");
-        });
-    });
-});
-
-
-
-const prenupSectionVideo = document.getElementById("prenupSectionVideo");
-
-if (prenupSectionVideo && "IntersectionObserver" in window) {
-
-    const sectionVideoObserver = new IntersectionObserver(
-        function (entries) {
-
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    prenupSectionVideo.muted = true;
-
-                    prenupSectionVideo.play().catch(function (error) {
-                        console.log("Section video autoplay blocked:", error);
-                    });
-
-                } else {
-
-                    prenupSectionVideo.pause();
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.25
-        }
-    );
-
-    sectionVideoObserver.observe(prenupSectionVideo);
-}
+        // =========================================
+// PRENUP VIDEO POPUP
+// =========================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -2035,30 +1991,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!prenupPopup || !prenupVideo || !closePrenup) return;
 
+
+    // Show popup after the website loads
     setTimeout(function () {
 
         prenupPopup.classList.remove("hidden");
 
-        // Muted autoplay is allowed by browsers
-        prenupVideo.muted = true;
-
-        prenupVideo.play().catch(function (error) {
-            console.log("Autoplay blocked:", error);
-        });
-
     }, 500);
 
 
-   
-    prenupVideo.addEventListener("click", function () {
-
-        prenupVideo.muted = false;
-
-        prenupVideo.play().catch(function () {});
-
-    });
-
-
+    // Close button
     closePrenup.addEventListener("click", function () {
 
         prenupVideo.pause();
@@ -2067,6 +2009,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // Close when clicking outside the popup
     prenupPopup.addEventListener("click", function (event) {
 
         if (event.target === prenupPopup) {
@@ -2079,6 +2022,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // ESC key closes popup
     document.addEventListener("keydown", function (event) {
 
         if (event.key === "Escape") {
