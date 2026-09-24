@@ -1410,7 +1410,28 @@ const GUEST_LIST = [
 
 
 ];
+// =====================================================
+// ENTOURAGE ACCORDIONS
+// =====================================================
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll(".accordion-toggle").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const group =
+                button.closest(".accordion-group");
+
+            if (!group) return;
+
+            group.classList.toggle("active");
+
+        });
+
+    });
+
+});
  // =====================================================
         // LOADER
         // =====================================================
@@ -1735,7 +1756,7 @@ const GUEST_LIST = [
                     }
 
                     showMessage(
-                        "We couldn't find that name on the invitation list. Please check the spelling and try again.",
+                        "Oops! We couldn’t find your name on our guest list. 💛 Due to the limited capacity of our venue, we can only accommodate guests who have been specifically invited. If you believe this is an error, kindly reach out to us directly. Thank you so much for understanding! 🫶",
                         true
                     );
 
@@ -1796,127 +1817,12 @@ const GUEST_LIST = [
 // RSVP NAME AUTOCOMPLETE — LIVE GOOGLE SHEET
 // =====================================================
 
-const nameSuggestions =
-    document.getElementById("nameSuggestions");
-
-let searchTimeout = null;
-
-if (guestNameInput && nameSuggestions) {
-
-    guestNameInput.addEventListener("input", function () {
-
-        const searchText =
-            this.value.trim().toLowerCase();
-
-        nameSuggestions.innerHTML = "";
-        nameSuggestions.style.display = "none";
-
-        if (!searchText) {
-            return;
-        }
-
-        clearTimeout(searchTimeout);
-
-        searchTimeout = setTimeout(async function () {
-
-            try {
-
-                const url =
-                    `${CONFIG.rsvpApiUrl}?action=searchGuests&query=${encodeURIComponent(searchText)}`;
-
-                const response = await fetch(url, {
-                    method: "GET",
-                    cache: "no-store"
-                });
-
-                if (!response.ok) {
-                    throw new Error("Guest search failed.");
-                }
-
-                const result = await response.json();
-
-                // Ignore an older request if the user has typed something new.
-                if (
-                    guestNameInput.value.trim().toLowerCase() !== searchText
-                ) {
-                    return;
-                }
-
-                if (
-                    !result.success ||
-                    !Array.isArray(result.guests) ||
-                    result.guests.length === 0
-                ) {
-                    return;
-                }
-
-                nameSuggestions.innerHTML = "";
-
-                result.guests.forEach(function (guest) {
-
-                    const suggestion =
-                        document.createElement("div");
-
-                    suggestion.className =
-                        "suggestion-item";
-
-                    suggestion.textContent =
-                        guest.name;
-
-                    suggestion.addEventListener(
-                        "click",
-                        function () {
-
-                            guestNameInput.value =
-                                guest.name;
-
-                            nameSuggestions.innerHTML =
-                                "";
-
-                            nameSuggestions.style.display =
-                                "none";
-
-                            guestNameInput.focus();
-                        }
-                    );
-
-                    nameSuggestions.appendChild(
-                        suggestion
-                    );
-
-                });
-
-                nameSuggestions.style.display =
-                    "block";
-
-            } catch (error) {
-
-                console.error(
-                    "Guest autocomplete error:",
-                    error
-                );
-
-                nameSuggestions.innerHTML = "";
-                nameSuggestions.style.display = "none";
-            }
-
-        }, 250);
-
-    });
 
 
-    document.addEventListener("click", function (event) {
 
-        if (!event.target.closest(".name-input-wrapper")) {
+    
 
-            nameSuggestions.innerHTML = "";
-            nameSuggestions.style.display = "none";
 
-        }
-
-    });
-
-}
 
         if (attendance) {
             attendance.addEventListener("change", updatePlusOneVisibility);

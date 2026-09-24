@@ -507,9 +507,7 @@
         /* =====================================================
            STORY
            ===================================================== */
-        /* =====================================================
-   STORY
-   ===================================================== */
+      
 
 .story-grid {
     display: grid;
@@ -595,6 +593,7 @@
            ===================================================== */
         .timeline {
             margin-top: 80px;
+            font-size: 20px;
         }
 
         .timeline-title {
@@ -610,6 +609,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             position: relative;
+            font-size: 12px;
         }
 
         .timeline-items::before {
@@ -650,10 +650,11 @@
         }
 
         .timeline-item span {
-            display: block;
-            margin-top: 3px;
-            font-size: 8px;
-            color: var(--muted);
+              display: block;
+    margin-top: 5px;
+    font-size: 16px !important;
+    color: var(--muted);
+    letter-spacing: 0.5px;
         }
 
         /* =====================================================
@@ -1211,60 +1212,8 @@
             color: var(--gold-light);
         }
 
-        /* =====================================================
-           QR CODE & FOOTER
-           ===================================================== */
-        .qr-section {
-            text-align: center;
-        }
-
-        .qr-card {
-            max-width: 430px;
-            margin: 0 auto;
-            padding: 40px;
-            border: 1px solid var(--line);
-            background: #f4f0e7;
-            color: #111;
-        }
-
-        #qrcode {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 220px;
-            height: 220px;
-            margin: 0 auto 25px;
-            background: #fff;
-        }
-
-        #qrcode img,
-        #qrcode canvas {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .qr-card h3 {
-            font-family: var(--serif);
-            font-size: 32px;
-            font-weight: 500;
-        }
-
-        .qr-card p {
-            margin: 10px 0 20px;
-            font-size: 10px;
-            color: #666;
-        }
-
-        .qr-download {
-            display: inline-flex;
-            padding: 10px 20px;
-            border: 1px solid #222;
-            background: transparent;
-            color: #222;
-            font-size: 8px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        
+        
 
         footer {
             padding: 90px 20px 120px;
@@ -1747,9 +1696,7 @@ footer .footer-credit {
 
 
 
-/* =====================================================
-   FINAL LAYOUT FIXES
-   ===================================================== */
+
 
 /* Wedding details: ceremony + reception only */
 #details .details-grid {
@@ -1968,7 +1915,7 @@ body {
     line-height: 1.7;
 }
 
-/* Keep letter spacing from becoming too aggressive on narrow screens. */
+
 .eyebrow {
     font-size: clamp(9px, 1.1vw, 13px);
     letter-spacing: clamp(2px, .55vw, 5px);
@@ -2159,8 +2106,7 @@ body {
     overflow-wrap: break-word;
 }
 
-/* Dress colors — the previous CSS had several conflicting mobile
-   sizes (14px, 52px, 62px). Use one fluid rule instead. */
+
 .color-palette-large {
     gap: clamp(10px, 2.5vw, 28px);
      transform: translateY(30px);
@@ -2353,12 +2299,7 @@ footer .footer-credit {
     letter-spacing: clamp(1px, .22vw, 2.5px);
 }
 
-/* ============================================================
-   NARROW PHONES
-   These are intentionally minimal. The fluid rules above handle
-   most devices; this only protects very narrow screens such as
-   320px/360px phones from text collisions.
-   ============================================================ */
+
 @media (max-width: 430px) {
     .container {
         width: calc(100% - 24px);
@@ -2449,7 +2390,7 @@ footer .footer-credit {
     }
 }
 
-/* Extra protection for narrow devices */
+
 @media (max-width: 340px) {
     .hero-title,
     .hero-names {
@@ -2488,7 +2429,7 @@ footer .footer-credit {
     }
 }
 
-/* Prevent flex/grid children from forcing horizontal overflow. */
+
 .story-grid > *,
 .details-grid > *,
 .people-grid > *,
@@ -2498,19 +2439,10 @@ footer .footer-credit {
     min-width: 0;
 }
 
-/* ============================================================
-   .hero-names is now consolidated into a single fluid
-   responsive declaration with no conflicting overrides.
-   ============================================================ */
 
-/* ============================================================
-   EDITORIAL HERO REFINEMENT
-   The landscape image is deliberately framed around the couple
-   on phones: open night sky provides room for the invitation copy.
-   ============================================================ */
 @media (min-width: 701px) {
     .hero-image {
-        /* Raise the portrait to place its shoulders above the names. */
+       
         background-position: 55% 170%;
     }
 }
@@ -2540,7 +2472,7 @@ footer .footer-credit {
     }
 
     .hero-image {
-        /* Raise the portrait to place its shoulders above the names. */
+       
         background-image:
             linear-gradient(
                 to bottom,
@@ -2603,19 +2535,14 @@ footer .footer-credit {
     font-weight: 700;
 }
 
-/* ============================================================
-   DEVICE-INDEPENDENT HERO COMPOSITION
-   The portrait uses the hero height as its reference, rather than the
-   viewport width. This keeps the shoulder line and the name block in the
-   same relationship on portrait, landscape, and ultrawide screens.
-   ============================================================ */
+
 .hero {
     --couple-shoulder-line: 52.4%;
     overflow: hidden;
     background: #050505;
 }
 
-/* A subdued full-bleed layer fills extra width on very wide displays. */
+
 .hero::before {
     content: "";
     position: absolute;
@@ -2689,8 +2616,7 @@ footer .footer-credit {
 
 @media (min-width: 701px) {
     .hero-content {
-        /* Desktop has more vertical room; bring the names closer to the
-           shoulder line without altering the working phone composition. */
+       
         top: calc(var(--couple-shoulder-line) + 1%);
     }
 }
@@ -2709,7 +2635,7 @@ footer .footer-credit {
     }
 }
 
-/* Footer uses one centered content axis at every viewport width. */
+
 footer {
     display: grid;
     place-content: center;
@@ -2742,7 +2668,7 @@ footer .footer-credit {
     text-align: center;
 }
 
-/* Match the hero's couple-above-copy composition in the footer. */
+
 footer {
     position: relative;
     isolation: isolate;
@@ -2751,7 +2677,7 @@ footer {
     background-repeat: no-repeat, no-repeat;
 }
 
-/* Fade the footer image in from the preceding dark section. */
+
 footer::before {
     content: "";
     position: absolute;
