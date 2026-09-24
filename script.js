@@ -2068,3 +2068,76 @@ if (prenupVideo) {
 
     videoObserver.observe(prenupVideo);
 }
+
+// =========================================
+// PRENUP VIDEO POPUP
+// =========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const prenupPopup = document.getElementById("prenupPopup");
+    const prenupVideo = document.getElementById("prenupPopupVideo");
+    const closePrenup = document.getElementById("closePrenup");
+
+    if (!prenupPopup || !prenupVideo || !closePrenup) {
+        return;
+    }
+
+    // Show popup shortly after the website loads
+    setTimeout(function () {
+
+        prenupVideo.muted = false;
+
+prenupVideo.play().catch(function (error) {
+
+    console.log("Autoplay with sound was blocked:", error);
+
+    // Show play button if autoplay is blocked
+    const playButton = document.getElementById("prenupPlayButton");
+
+    if (playButton) {
+        playButton.classList.add("show");
+    }
+
+});
+
+    }, 500);
+
+
+    // Close popup
+    closePrenup.addEventListener("click", function () {
+
+        prenupVideo.pause();
+        prenupPopup.classList.add("hidden");
+
+    });
+
+
+    // Close when clicking outside the video
+    prenupPopup.addEventListener("click", function (event) {
+
+        if (event.target === prenupPopup) {
+
+            prenupVideo.pause();
+            prenupPopup.classList.add("hidden");
+
+        }
+
+    });
+
+
+    // ESC key closes popup
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            prenupVideo.pause();
+            prenupPopup.classList.add("hidden");
+
+        }
+
+    });
+
+});
+
+
