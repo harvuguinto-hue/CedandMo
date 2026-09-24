@@ -2033,3 +2033,38 @@ const limitedMatches = matches.slice(0, 3);
         });
     });
 });
+
+// =====================================================
+// PRENUP VIDEO AUTOPLAY ON SCROLL
+// =====================================================
+
+const prenupVideo = document.getElementById("prenupVideo");
+
+if (prenupVideo) {
+
+    const videoObserver = new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+                    // Start playing when video enters the screen
+                    prenupVideo.play().catch(() => {
+                        // Browser blocked autoplay
+                    });
+
+                } else {
+                    // Pause when video leaves the screen
+                    prenupVideo.pause();
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.5
+        }
+    );
+
+    videoObserver.observe(prenupVideo);
+}
