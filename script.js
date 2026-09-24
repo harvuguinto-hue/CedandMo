@@ -2037,37 +2037,44 @@ const limitedMatches = matches.slice(0, 3);
 // =====================================================
 // PRENUP VIDEO AUTOPLAY ON SCROLL
 // =====================================================
+// =====================================================
+// PRENUP SECTION VIDEO AUTOPLAY
+// =====================================================
 
-const prenupVideo = document.getElementById("prenupVideo");
+const prenupSectionVideo = document.getElementById("prenupSectionVideo");
 
-if (prenupVideo) {
+if (prenupSectionVideo && "IntersectionObserver" in window) {
 
-    const videoObserver = new IntersectionObserver(
-        (entries) => {
+    const sectionVideoObserver = new IntersectionObserver(
+        function (entries) {
 
-            entries.forEach((entry) => {
+            entries.forEach(function (entry) {
 
                 if (entry.isIntersecting) {
-                    // Start playing when video enters the screen
-                    prenupVideo.play().catch(() => {
-                        // Browser blocked autoplay
+
+                    prenupSectionVideo.muted = true;
+
+                    prenupSectionVideo.play().catch(function (error) {
+                        console.log("Section video autoplay blocked:", error);
                     });
 
                 } else {
-                    // Pause when video leaves the screen
-                    prenupVideo.pause();
+
+                    prenupSectionVideo.pause();
+
                 }
 
             });
 
         },
         {
-            threshold: 0.5
+            threshold: 0.25
         }
     );
 
-    videoObserver.observe(prenupVideo);
+    sectionVideoObserver.observe(prenupSectionVideo);
 }
+
 
 // =========================================
 // PRENUP VIDEO POPUP
