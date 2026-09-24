@@ -610,6 +610,9 @@
             grid-template-columns: repeat(4, 1fr);
             position: relative;
             font-size: 12px;
+            margin-bottom: 18px;
+    color: #aaa397;
+    
         }
 
         .timeline-items::before {
@@ -652,9 +655,10 @@
         .timeline-item span {
               display: block;
     margin-top: 5px;
-    font-size: 16px !important;
+    font-size: 12px !important;
     color: var(--muted);
     letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif !important;
         }
 
         /* =====================================================
