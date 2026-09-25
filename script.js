@@ -1681,7 +1681,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return `
                 <div style="text-align:center; padding:20px 0;">
                     <div style="font-family:var(--serif); font-size:34px; color:var(--cream);">
-                        Hello, ${escapeHtml(guest.name)}! ❤️
+                        Hello, ${escapeHtml(guest.name)}! 
                     </div>
                     <div style="margin-top:8px; color:var(--muted); font-size:11px;">
                         You're invited to celebrate with CED & MO.
