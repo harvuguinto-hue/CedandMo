@@ -1600,9 +1600,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
 
            
-        // =====================================================
-        // RSVP — GOOGLE SHEETS LOOKUP
-        // =====================================================
+       
         const rsvpForm = document.getElementById("rsvpForm");
         const guestNameInput = document.getElementById("guestName");
         
@@ -1617,6 +1615,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const plusOneName = document.getElementById("plusOneName");
 
         let currentGuest = null;
+        
+        // RSVP Performance Optimization: Client-side cache and request tracking
+        const rsvpCache = new Map(); // Cache guest lookups to avoid duplicate server requests
+        let pendingFindGuestRequest = null; // Track in-flight requests to prevent duplicates
+        let pendingSubmitRequest = null; // Track in-flight submissions to prevent duplicates
 
         function showMessage(message, isError) {
             if (!rsvpMessage) return;
@@ -1687,20 +1690,22 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
         }
 
-        function setupGuestCount(limit) {
-            if (!guestsSelect) return;
+        function setupGuestCount() {
+    if (!guestsSelect) return;
 
-            guestsSelect.innerHTML = "";
+    guestsSelect.innerHTML = "";
 
-            const max = Math.max(1, 1 + Number(limit || 0));
+    const option = document.createElement("option");
+    option.value = "1";
+    option.textContent = "1";
 
-            for (let i = 1; i <= max; i++) {
-                const option = document.createElement("option");
-                option.value = String(i);
-                option.textContent = String(i);
-                guestsSelect.appendChild(option);
-            }
-        }
+    guestsSelect.appendChild(option);
+
+    // The invited guest is already counted.
+    // Number of Guests is always 1 and cannot be changed.
+    guestsSelect.value = "1";
+    guestsSelect.disabled = true;
+}
 
         function escapeHtml(value) {
             return String(value || "")
@@ -1721,69 +1726,50 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            // RSVP Optimization: Prevent duplicate simultaneous requests
+            if (pendingFindGuestRequest) {
+                return; // A request is already in progress, don't send another
+            }
+
+            // RSVP Optimization: Check cache first to avoid redundant server calls
+            const cacheKey = name.toLowerCase();
+            if (rsvpCache.has(cacheKey)) {
+                const cachedResult = rsvpCache.get(cacheKey);
+                handleGuestLookupResult(cachedResult, name);
+                return;
+            }
+
             findGuestButton.disabled = true;
             findGuestButton.textContent = "Finding your invitation...";
             showMessage("", false);
 
             try {
-                const url =
-                    `${CONFIG.rsvpApiUrl}?action=findGuest&name=${encodeURIComponent(name)}`;
+                // RSVP Optimization: Mark this request as pending
+                const requestPromise = (async () => {
+                    const url =
+                        `${CONFIG.rsvpApiUrl}?action=findGuest&name=${encodeURIComponent(name)}`;
 
-                const response = await fetch(url, {
-                    method: "GET",
-                    cache: "no-store"
-                });
+                    const response = await fetch(url, {
+                        method: "GET",
+                        cache: "no-store"
+                    });
 
-                if (!response.ok) {
-                    throw new Error("Unable to contact the RSVP server.");
-                }
-
-                const result = await response.json();
-
-                if (!result.success || !result.guest) {
-                    currentGuest = null;
-
-                    if (guestInvitation) {
-                        guestInvitation.style.display = "none";
+                    if (!response.ok) {
+                        throw new Error("Unable to contact the RSVP server.");
                     }
 
-                    if (rsvpFields) {
-                        rsvpFields.style.display = "none";
-                    }
+                    return await response.json();
+                })();
 
-                    if (submitArea) {
-                        submitArea.style.display = "none";
-                    }
+                pendingFindGuestRequest = requestPromise;
+                const result = await requestPromise;
 
-                    showMessage(
-                        "Oops! We couldn’t find your name on our guest list. 💛 Due to the limited capacity of our venue, we can only accommodate guests who have been specifically invited. If you believe this is an error, kindly reach out to us directly. Thank you so much for understanding! 🫶",
-                        true
-                    );
-
-                    return;
+                // RSVP Optimization: Cache successful results to avoid re-querying
+                if (result.success && result.guest) {
+                    rsvpCache.set(cacheKey, result);
                 }
 
-                currentGuest = result.guest;
-
-                if (guestInvitation && guestGreeting) {
-                    guestGreeting.innerHTML = buildGreeting(currentGuest);
-                    guestInvitation.style.display = "block";
-                }
-
-                setupGuestCount(currentGuest.plusOneLimit);
-
-                if (rsvpFields) {
-                    rsvpFields.style.display = "block";
-                }
-
-                if (submitArea) {
-                    submitArea.style.display = "flex";
-                }
-
-                showMessage(
-                    "Your invitation was found. Please complete your RSVP below.",
-                    false
-                );
+                handleGuestLookupResult(result, name);
 
             } catch (error) {
                 console.error(error);
@@ -1795,7 +1781,57 @@ document.addEventListener("DOMContentLoaded", function () {
             } finally {
                 findGuestButton.disabled = false;
                 findGuestButton.textContent = "Find My Invitation";
+                pendingFindGuestRequest = null;
             }
+        }
+
+        // RSVP Optimization: Extract result handling to reduce code duplication and improve speed
+        function handleGuestLookupResult(result, searchName) {
+            if (!result.success || !result.guest) {
+                currentGuest = null;
+
+                if (guestInvitation) {
+                    guestInvitation.style.display = "none";
+                }
+
+                if (rsvpFields) {
+                    rsvpFields.style.display = "none";
+                }
+
+                if (submitArea) {
+                    submitArea.style.display = "none";
+                }
+
+                showMessage(
+                    "Oops! We couldn't find your name on our guest list. 💛 Due to the limited capacity of our venue, we can only accommodate guests who have been specifically invited. If you believe this is an error, kindly reach out to us directly. Thank you so much for understanding! 🫶",
+                    true
+                );
+
+                return;
+            }
+
+            currentGuest = result.guest;
+
+            if (guestInvitation && guestGreeting) {
+                guestGreeting.innerHTML = buildGreeting(currentGuest);
+                guestInvitation.style.display = "block";
+            }
+
+            setupGuestCount(currentGuest.plusOneLimit);
+            updatePlusOneVisibility();
+
+            if (rsvpFields) {
+                rsvpFields.style.display = "block";
+            }
+
+            if (submitArea) {
+                submitArea.style.display = "flex";
+            }
+
+            showMessage(
+                "Your invitation was found. Please complete your RSVP below.",
+                false
+            );
         }
 
         if (findGuestButton) {
@@ -1810,12 +1846,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
-        // =====================================================
-// RSVP NAME AUTOCOMPLETE
-// =====================================================
 
-// RSVP NAME AUTOCOMPLETE — LIVE GOOGLE SHEET
-// =====================================================
 
 
 
@@ -1829,20 +1860,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         function updatePlusOneVisibility() {
-            if (!plusOneName || !attendance || !guestsSelect || !currentGuest) return;
+    if (!plusOneName || !attendance || !currentGuest) return;
 
-            const attending = attendance.value === "Attending";
-            const guestCount = Number(guestsSelect.value || 1);
-            const hasPlusOne = Number(currentGuest.plusOneLimit || 0) > 0;
-            const needsPlusOneName = guestCount > 1;
+    const attending = attendance.value === "Attending";
+    const hasPlusOne = Number(currentGuest.plusOneLimit || 0) > 0;
 
-            plusOneName.parentElement.style.display =
-                attending && hasPlusOne && needsPlusOneName ? "flex" : "none";
+    // Show the plus-one field only if:
+    // 1. Guest is attending
+    // 2. Guest is actually allowed a plus-one
+    plusOneName.parentElement.style.display =
+        attending && hasPlusOne ? "flex" : "none";
 
-            if (!attending || !hasPlusOne || !needsPlusOneName) {
-                plusOneName.value = "";
-            }
-        }
+    if (!attending || !hasPlusOne) {
+        plusOneName.value = "";
+    }
+}
 
         if (guestsSelect) {
             guestsSelect.addEventListener("change", updatePlusOneVisibility);
@@ -1862,6 +1894,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
+                // RSVP Optimization: Prevent duplicate simultaneous submissions
+                if (pendingSubmitRequest) {
+                    return; // A submission is already in progress
+                }
+
                 const submitButton = rsvpForm.querySelector('button[type="submit"]');
                 const originalText = submitButton ? submitButton.textContent : "Send RSVP";
 
@@ -1871,25 +1908,38 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 try {
-                    const attending = attendance.value === "Attending";
-                    const numberAttending = attending
-                        ? Number(guestsSelect.value || 1)
-                        : 0;
+    const attending = attendance.value === "Attending";
 
-                 
-                    const params = new URLSearchParams();
-                    params.set("action", "submitRSVP");
-                    params.set("guestId", String(currentGuest.id || ""));
-                    params.set("name", String(currentGuest.name || ""));
-                    params.set("attendance", attendance.value);
-                    params.set("numberAttending", String(numberAttending));
-                    params.set("plusOneName", plusOneName ? plusOneName.value.trim() : "");
-                    params.set("message", document.getElementById("message")?.value.trim() || "");
+    // The invited guest is always counted as 1.
+    const numberAttending = attending ? 1 : 0;
 
-                    const response = await fetch(
+    // Only allow a plus-one if the invitation actually permits one.
+    const hasPlusOne =
+        Number(currentGuest.plusOneLimit || 0) > 0;
+
+    const submittedPlusOneName =
+        attending && hasPlusOne && plusOneName
+            ? plusOneName.value.trim()
+            : "";
+
+    const params = new URLSearchParams();
+    params.set("action", "submitRSVP");
+    params.set("guestId", String(currentGuest.id || ""));
+    params.set("name", String(currentGuest.name || ""));
+    params.set("attendance", attendance.value);
+    params.set("numberAttending", String(numberAttending));
+    params.set("plusOneName", submittedPlusOneName);
+    params.set(
+        "message",
+        document.getElementById("message")?.value.trim() || ""
+    );
+                    // RSVP Optimization: Track submission request to prevent duplicates
+                    pendingSubmitRequest = fetch(
                         `${CONFIG.rsvpApiUrl}?${params.toString()}`,
                         { method: "GET", cache: "no-store" }
                     );
+                    
+                    const response = await pendingSubmitRequest;
 
                     if (!response.ok) {
                         throw new Error("Unable to save RSVP.");
@@ -1921,6 +1971,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         submitButton.disabled = false;
                         submitButton.textContent = originalText;
                     }
+                } finally {
+                    // RSVP Optimization: Clear pending submission tracker
+                    pendingSubmitRequest = null;
                 }
             });
         }
