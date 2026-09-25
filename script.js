@@ -1829,7 +1829,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             showMessage(
-                "Your invitation was found. Please complete your RSVP below.",
+                "Your invitation was found. Please complete your RSVP.",
                 false
             );
         }
