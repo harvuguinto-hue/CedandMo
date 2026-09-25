@@ -1669,7 +1669,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return `
                     <div style="text-align:center; padding:20px 0;">
                         <div style="font-family:var(--serif); font-size:34px; color:var(--cream);">
-                            Hello, ${escapeHtml(guest.name)}! ❤️
+                            Hello, ${escapeHtml(guest.name)}! 
                         </div>
                         <div style="margin-top:8px; color:var(--gold); font-size:10px; letter-spacing:2px; text-transform:uppercase;">
                             You're one of our ${escapeHtml(role)}
@@ -1952,7 +1952,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                     showMessage(
-                        "Thank you! Your RSVP has been saved successfully. ❤️",
+                        "Thank you! Your RSVP has been saved successfully. ",
                         false
                     );
 
