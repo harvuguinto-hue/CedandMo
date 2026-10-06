@@ -1646,6 +1646,45 @@ document.addEventListener("DOMContentLoaded", function () {
             return "Guest";
         }
 
+        function buildSponsorDressReminder(role) {
+    const r = String(role || "").toLowerCase();
+
+    // 1. If role is Ninong -> Show ONLY Black Suit
+    if (r === "ninong") {
+        return `
+            <div class="rsvp-dress-guides" style="display: block; max-width: 450px; margin: 26px auto 0;">
+                <figure class="rsvp-dress-guide">
+                    <figcaption>Ninong Dress Code</figcaption>
+                    <img
+                        src="images/Black Suit Ninongs Style Guide.png"
+                        alt="Black Suit Ninongs Style Guide"
+                        loading="lazy"
+                    >
+                </figure>
+            </div>
+        `;
+    } 
+    
+    // 2. If role is Ninang -> Show ONLY Mauve Gown
+    else if (r === "ninang") {
+        return `
+            <div class="rsvp-dress-guides" style="display: block; max-width: 450px; margin: 26px auto 0;">
+                <figure class="rsvp-dress-guide">
+                    <figcaption>Ninang Dress Code</figcaption>
+                    <img
+                        src="images/Mauve Ninangs Gown Style Guide.png"
+                        alt="Mauve Ninangs Gown Style Guide"
+                        loading="lazy"
+                    >
+                </figure>
+            </div>
+        `;
+    }
+
+    // 3. If Other (Regular Guest) -> Hide entirely
+    return "";
+}
+
         function buildGreeting(guest) {
             const role = roleLabel(guest);
 
@@ -1674,6 +1713,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div style="margin-top:8px; color:var(--gold); font-size:10px; letter-spacing:2px; text-transform:uppercase;">
                             You're one of our ${escapeHtml(role)}
                         </div>
+                        ${buildSponsorDressReminder(role)}
                     </div>
                 `;
             }
@@ -1865,9 +1905,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const attending = attendance.value === "Attending";
     const hasPlusOne = Number(currentGuest.plusOneLimit || 0) > 0;
 
-    // Show the plus-one field only if:
-    // 1. Guest is attending
-    // 2. Guest is actually allowed a plus-one
+   
     plusOneName.parentElement.style.display =
         attending && hasPlusOne ? "flex" : "none";
 
@@ -1913,7 +1951,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // The invited guest is always counted as 1.
     const numberAttending = attending ? 1 : 0;
 
-    // Only allow a plus-one if the invitation actually permits one.
+    // Only allow a plusone if the invitation actually permits one.
     const hasPlusOne =
         Number(currentGuest.plusOneLimit || 0) > 0;
 

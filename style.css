@@ -3042,3 +3042,112 @@ footer::before {
     color: var(--muted) !important;
     opacity: 0.8 !important;
 }
+
+
+/* =====================================================
+   NINONGS & NINANGS DRESS CODE
+   ===================================================== */
+.sponsor-dress {
+    margin-top: 10px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 90px;
+}
+
+.sponsor-dress-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 40px;
+}
+
+.sponsor-dress-head h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 38px;
+    color: var(--cream);
+    margin: 10px 0 14px;
+}
+
+.sponsor-dress-head p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.sponsor-dress-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sponsor-dress-card {
+    margin: 0;
+    background: var(--black-card);
+    border: 1px solid var(--line);
+    overflow: hidden;
+}
+
+.sponsor-dress-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.sponsor-dress-card figcaption {
+    padding: 22px 20px 26px;
+    text-align: center;
+}
+
+.sponsor-dress-card h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--cream);
+    margin-bottom: 8px;
+}
+
+.sponsor-dress-card figcaption p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.rsvp-dress-guides {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 760px;
+    margin: 26px auto 0;
+}
+
+.rsvp-dress-guide {
+    margin: 0;
+    text-align: center;
+}
+
+.rsvp-dress-guide figcaption {
+    margin-bottom: 12px;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.rsvp-dress-guide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border: 1px solid var(--line);
+    background: var(--black-card);
+}
+
+@media (max-width: 700px) {
+    .sponsor-dress { padding-top: 45px; }
+    .sponsor-dress-grid { grid-template-columns: 1fr; gap: 22px; }
+    .sponsor-dress-head h3 { font-size: 32px; }
+    .rsvp-dress-guides { grid-template-columns: 1fr; gap: 26px; }
+}
