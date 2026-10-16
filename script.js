@@ -31,7 +31,7 @@ const CONFIG = {
 
 };
 const RSVP_API_URL =
-    "https://script.google.com/macros/s/AKfycbwBNUcvZISLlmbGdP6HDDXSb2kdKkYmSkjmvfQOkHYh0tdIwFuonAMbAGSHIRkgIRsd0w/exec";
+    "https://script.google.com/macros/s/AKfycbzJkTYhWS3ovzOzdUphcXZWM5eqPbtMminAp8hrTV62WDN-QwhoRhoXNfuVa1Bmjy4CSw/exec";
 
 // =====================================================
 // MASTER GUEST LIST
