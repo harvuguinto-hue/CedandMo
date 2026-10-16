@@ -27,7 +27,7 @@ const CONFIG = {
 
             // Google Apps Script RSVP API
             rsvpApiUrl:
-                "https://script.google.com/macros/s/AKfycbwBNUcvZISLlmbGdP6HDDXSb2kdKkYmSkjmvfQOkHYh0tdIwFuonAMbAGSHIRkgIRsd0w/exec"
+                "https://script.google.com/macros/s/AKfycbzJkTYhWS3ovzOzdUphcXZWM5eqPbtMminAp8hrTV62WDN-QwhoRhoXNfuVa1Bmjy4CSw/exec"
 
 };
 const RSVP_API_URL =
@@ -1948,10 +1948,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 try {
     const attending = attendance.value === "Attending";
 
-    // The invited guest is always counted as 1.
-    const numberAttending = attending ? 1 : 0;
-
-    // Only allow a plusone if the invitation actually permits one.
+        // Only allow a plusone if the invitation actually permits one.
     const hasPlusOne =
         Number(currentGuest.plusOneLimit || 0) > 0;
 
@@ -1959,6 +1956,11 @@ document.addEventListener("DOMContentLoaded", function () {
         attending && hasPlusOne && plusOneName
             ? plusOneName.value.trim()
             : "";
+
+    // The invited guest counts as 1, plus 1 if a plus-one name was entered.
+    const numberAttending = !attending
+        ? 0
+        : 1 + (submittedPlusOneName ? 1 : 0);
 
     const params = new URLSearchParams();
     params.set("action", "submitRSVP");
