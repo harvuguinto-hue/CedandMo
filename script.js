@@ -1612,7 +1612,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const rsvpMessage = document.getElementById("rsvpMessage");
         const attendance = document.getElementById("attendance");
         const guestsSelect = document.getElementById("guests");
-        const plusOneName = document.getElementById("plusOneName");
+        const additionalGuestsGroup = document.getElementById("additionalGuestsGroup");
+        const additionalGuestsLabel = document.getElementById("additionalGuestsLabel");
+        const additionalGuestsFields = document.getElementById("additionalGuestsFields");
 
         let currentGuest = null;
         
@@ -1685,50 +1687,188 @@ document.addEventListener("DOMContentLoaded", function () {
     return "";
 }
 
+        // Number of additional seats allocated to this guest (0 if none).
+        // Uses the existing plusOneLimit value returned by the RSVP backend.
+        function getAdditionalSeats(guest) {
+            const limit = parseInt(guest && guest.plusOneLimit, 10);
+            return Number.isFinite(limit) && limit > 0 ? limit : 0;
+        }
+
+        // Returns "Ninong", "Ninang", or "" for everyone else.
+        function getSponsorTitle(guest) {
+            const role = String((guest && guest.role) || "").trim().toLowerCase();
+
+            if (role === "ninong") return "Ninong";
+            if (role === "ninang") return "Ninang";
+
+            return "";
+        }
+
         function buildGreeting(guest) {
-            const role = roleLabel(guest);
+            const seats = getAdditionalSeats(guest);
+            const title = getSponsorTitle(guest);
+            const seatWord = seats === 1 ? "seat" : "seats";
 
-            if (guest.category === "Entourage") {
-                return `
-                    <div style="text-align:center; padding:20px 0;">
-                        <div style="font-family:var(--serif); font-size:34px; color:var(--cream);">
-                            Hello, ${escapeHtml(guest.name)}! 
-                        </div>
-                        <div style="margin-top:8px; color:var(--gold); font-size:10px; letter-spacing:2px; text-transform:uppercase;">
-                            You're one of our ${escapeHtml(role)}
-                        </div>
-                        <div style="margin-top:12px; color:var(--muted); font-size:11px;">
-                            We're so happy to have you as part of CED & MO's special day.
-                        </div>
-                    </div>
-                `;
+            let heading;
+            let body;
+
+            if (title) {
+                // A. Ninong / Ninang
+                heading = `Hello, ${escapeHtml(title)}!`;
+                body = seats > 0
+                    ? `We're glad to have you as our ${escapeHtml(title)} on our wedding day. We've reserved 1 seat for you and ${seats} additional ${seatWord} for your family.`
+                    : `We're glad to have you as our ${escapeHtml(title)} on our wedding day. We've reserved 1 seat for you.`;
+            } else {
+                heading = `Hello, ${escapeHtml(guest.name)}!`;
+
+                if (seats === 0) {
+                    // B. Guest without a plus-one
+                    body = "We're glad to have you on our wedding day. We've reserved 1 seat for you.";
+                } else if (seats === 1) {
+                    // C. Guest with a plus-one
+                    body = "We're glad to have you on our wedding day. We've reserved 1 seat for you and your plus 1.";
+                } else {
+                    // Any other allowance (not covered by the spec): state the number of seats.
+                    body = `We're glad to have you on our wedding day. We've reserved 1 seat for you and ${seats} additional seats.`;
+                }
             }
 
-            if (guest.category === "Principal Sponsor") {
-                return `
-                    <div style="text-align:center; padding:20px 0;">
-                        <div style="font-family:var(--serif); font-size:34px; color:var(--cream);">
-                            Hello, ${escapeHtml(guest.name)}! 
-                        </div>
-                        <div style="margin-top:8px; color:var(--gold); font-size:10px; letter-spacing:2px; text-transform:uppercase;">
-                            You're one of our ${escapeHtml(role)}
-                        </div>
-                        ${buildSponsorDressReminder(role)}
-                    </div>
-                `;
-            }
+            // Existing behavior kept: entourage members still see their role.
+            const entourageRole = guest.category === "Entourage"
+                ? `
+                    <div style="margin-top:8px; color:var(--gold); font-size:10px; letter-spacing:2px; text-transform:uppercase;">
+                        You're one of our ${escapeHtml(roleLabel(guest))}
+                    </div>`
+                : "";
+
+            // Existing behavior kept: sponsors still see their dress code guide.
+            const dressGuide = guest.category === "Principal Sponsor"
+                ? buildSponsorDressReminder(roleLabel(guest))
+                : "";
 
             return `
                 <div style="text-align:center; padding:20px 0;">
                     <div style="font-family:var(--serif); font-size:34px; color:var(--cream);">
-                        Hello, ${escapeHtml(guest.name)}! 
+                        ${heading}
                     </div>
-                    <div style="margin-top:8px; color:var(--muted); font-size:11px;">
-                        You're invited to celebrate with CED & MO.
+                    ${entourageRole}
+                    <div style="margin-top:12px; color:var(--cream-soft); font-size:13px; line-height:1.8;">
+                        ${body}
                     </div>
+                    <div style="margin-top:12px; color:var(--gold-light); font-size:13px; line-height:1.8;">
+                        Are you able to attend on November 22, 2026?
+                    </div>
+                    ${dressGuide}
                 </div>
             `;
         }
+
+        // Builds one name field per additional seat (never more than the allocation).
+        function renderAdditionalGuestFields(guest) {
+            if (!additionalGuestsFields) return;
+
+            additionalGuestsFields.innerHTML = "";
+
+            const seats = getAdditionalSeats(guest);
+
+            if (additionalGuestsLabel) {
+                additionalGuestsLabel.textContent =
+                    seats === 1 ? "Plus-One Name" : "Additional Guests";
+            }
+
+            for (let i = 1; i <= seats; i++) {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.className = "additional-guest-name";
+                input.name = `additional_guest_${i}`;
+                input.autocomplete = "off";
+                input.maxLength = 100;
+                input.placeholder = seats === 1
+                    ? "Name of your plus-one"
+                    : `Additional guest ${i} name`;
+                input.setAttribute(
+                    "aria-label",
+                    seats === 1 ? "Plus-one name" : `Additional guest ${i} name`
+                );
+
+                additionalGuestsFields.appendChild(input);
+            }
+        }
+
+        // Trimmed, non-empty names, capped at the guest's allocation.
+        function getAdditionalGuestNames() {
+            if (!additionalGuestsFields || !currentGuest) return [];
+
+            const seats = getAdditionalSeats(currentGuest);
+
+            return Array.from(
+                additionalGuestsFields.querySelectorAll("input.additional-guest-name")
+            )
+                .slice(0, seats)
+                .map(function (input) { return input.value.trim(); })
+                .filter(Boolean);
+        }
+
+        // =====================================================
+        // RSVP CONFIRMATION OVERLAY
+        // =====================================================
+        function showRsvpConfirmation(attending) {
+            const overlay = document.getElementById("rsvpConfirmOverlay");
+            const messageEl = document.getElementById("rsvpConfirmMessage");
+            const signoffEl = document.getElementById("rsvpConfirmSignoff");
+
+            if (!overlay || !messageEl || !signoffEl) return;
+
+          if (attending) {
+    messageEl.textContent =
+        "Thank you! Your RSVP has been saved. We can't wait to celebrate with you!";
+
+    signoffEl.innerHTML = "With love,<br><span>Ced &amp; Mo 🤍</span>";
+
+            } else {
+                messageEl.textContent =
+                    "We appreciate you letting us know. Sending you lots of love!";
+                signoffEl.textContent = "Ced & Mo 🤍";
+            }
+
+            overlay.classList.remove("hidden");
+            overlay.setAttribute("aria-hidden", "false");
+
+            const closeButton = document.getElementById("rsvpConfirmClose");
+            if (closeButton) closeButton.focus();
+        }
+
+        function hideRsvpConfirmation() {
+            const overlay = document.getElementById("rsvpConfirmOverlay");
+            if (!overlay) return;
+
+            overlay.classList.add("hidden");
+            overlay.setAttribute("aria-hidden", "true");
+        }
+
+        (function initRsvpConfirmOverlay() {
+            const overlay = document.getElementById("rsvpConfirmOverlay");
+            const closeButton = document.getElementById("rsvpConfirmClose");
+
+            if (!overlay) return;
+
+            if (closeButton) {
+                closeButton.addEventListener("click", hideRsvpConfirmation);
+            }
+
+            overlay.addEventListener("click", function (event) {
+                if (event.target === overlay) hideRsvpConfirmation();
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (
+                    event.key === "Escape" &&
+                    !overlay.classList.contains("hidden")
+                ) {
+                    hideRsvpConfirmation();
+                }
+            });
+        })();
 
         function setupGuestCount() {
     if (!guestsSelect) return;
@@ -1745,6 +1885,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Number of Guests is always 1 and cannot be changed.
     guestsSelect.value = "1";
     guestsSelect.disabled = true;
+
+    // The fixed "1" is redundant with the seat message above, so hide the field.
+    // The element is kept in the DOM so existing references still work.
+    if (guestsSelect.parentElement) {
+        guestsSelect.parentElement.style.display = "none";
+    }
 }
 
         function escapeHtml(value) {
@@ -1858,6 +2004,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             setupGuestCount(currentGuest.plusOneLimit);
+            renderAdditionalGuestFields(currentGuest);
             updatePlusOneVisibility();
 
             if (rsvpFields) {
@@ -1900,19 +2047,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         function updatePlusOneVisibility() {
-    if (!plusOneName || !attendance || !currentGuest) return;
+            if (!additionalGuestsGroup || !attendance || !currentGuest) return;
 
-    const attending = attendance.value === "Attending";
-    const hasPlusOne = Number(currentGuest.plusOneLimit || 0) > 0;
+            const attending = attendance.value === "Attending";
+            const hasAdditionalSeats = getAdditionalSeats(currentGuest) > 0;
 
-   
-    plusOneName.parentElement.style.display =
-        attending && hasPlusOne ? "flex" : "none";
+            additionalGuestsGroup.style.display =
+                attending && hasAdditionalSeats ? "flex" : "none";
 
-    if (!attending || !hasPlusOne) {
-        plusOneName.value = "";
-    }
-}
+            if (!attending || !hasAdditionalSeats) {
+                additionalGuestsFields
+                    .querySelectorAll("input.additional-guest-name")
+                    .forEach(function (input) { input.value = ""; });
+            }
+        }
 
         if (guestsSelect) {
             guestsSelect.addEventListener("change", updatePlusOneVisibility);
@@ -1948,19 +2096,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 try {
     const attending = attendance.value === "Attending";
 
-        // Only allow a plusone if the invitation actually permits one.
-    const hasPlusOne =
-        Number(currentGuest.plusOneLimit || 0) > 0;
+        // Only allow additional guests if the invitation actually permits them,
+    // and never more than the allocated number of additional seats.
+    const additionalNames = attending
+        ? getAdditionalGuestNames()
+        : [];
 
-    const submittedPlusOneName =
-        attending && hasPlusOne && plusOneName
-            ? plusOneName.value.trim()
-            : "";
+    // Stored in the existing "Plus-One Name" column (comma-separated when several).
+    const submittedPlusOneName = additionalNames.join(", ");
 
-    // The invited guest counts as 1, plus 1 if a plus-one name was entered.
+    // The invited guest counts as 1, plus 1 for each additional guest name entered.
     const numberAttending = !attending
         ? 0
-        : 1 + (submittedPlusOneName ? 1 : 0);
+        : 1 + additionalNames.length;
 
     const params = new URLSearchParams();
     params.set("action", "submitRSVP");
@@ -1995,6 +2143,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Thank you! Your RSVP has been saved successfully. ",
                         false
                     );
+
+                    // Shown only here, after the backend confirmed success.
+                    showRsvpConfirmation(attending);
 
                     if (submitButton) {
                         submitButton.textContent = "RSVP Saved ✓";
