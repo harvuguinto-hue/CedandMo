@@ -985,9 +985,10 @@
         }
 
         .people-grid {
+            --people-gap: 20px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--people-gap);
         }
 
         .person {
@@ -1275,7 +1276,6 @@
             .timeline-items { grid-template-columns: repeat(2, 1fr); gap: 40px; }
             .timeline-items::before { display: none; }
             .details-grid { grid-template-columns: 1fr; }
-            .people-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 700px) {
@@ -1318,7 +1318,6 @@
             .schedule-row { grid-template-columns: 70px 1fr; gap: 18px; }
             .schedule-time { font-size: 20px; }
             .schedule-info h3 { font-size: 23px; }
-            .people-grid { grid-template-columns: 1fr 1fr; gap: 28px 15px; }
             .person-photo { width: 120px; height: 145px; }
             .rsvp-box { padding: 30px 20px; }
             .form-group.full { grid-column: auto; }
@@ -1679,7 +1678,8 @@ footer .footer-credit {
     transition: grid-template-rows 0.45s ease;
 }
 
-.accordion-content > .people-grid {
+.accordion-content > .people-grid,
+.accordion-content > .accordion-inner {
     overflow: hidden;
     min-height: 0;
     padding-bottom: 0;
@@ -1690,7 +1690,8 @@ footer .footer-credit {
     grid-template-rows: 1fr;
 }
 
-.accordion-group.active .accordion-content > .people-grid {
+.accordion-group.active .accordion-content > .people-grid,
+.accordion-group.active .accordion-content > .accordion-inner {
     padding-bottom: 35px;
 }
 
@@ -1788,7 +1789,8 @@ footer .footer-credit {
     transition: grid-template-rows .45s ease;
 }
 
-#entourage .accordion-content > .people-grid {
+#entourage .accordion-content > .people-grid,
+#entourage .accordion-content > .accordion-inner {
     min-height: 0;
     overflow: hidden;
     padding: 0 0 0;
@@ -1799,7 +1801,8 @@ footer .footer-credit {
     grid-template-rows: 1fr;
 }
 
-#entourage .accordion-group.active .accordion-content > .people-grid {
+#entourage .accordion-group.active .accordion-content > .people-grid,
+#entourage .accordion-group.active .accordion-content > .accordion-inner {
     padding: 10px 0 35px;
 }
 
@@ -2172,14 +2175,13 @@ body {
 
 /* Entourage */
 .people-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(15px, 2vw, 28px);
+    --people-gap: clamp(15px, 2vw, 28px);
 }
 
 .people-title,
 #entourage .accordion-toggle .people-title,
 #entourage .accordion-toggle span:first-child {
-    font-size: clamp(22px, 3vw, 34px);
+    font-size: clamp(22px, 2.4vw, 28px);
     line-height: 1.15;
     overflow-wrap: break-word;
 }
@@ -2190,7 +2192,7 @@ body {
 }
 
 .person h4 {
-    font-size: clamp(19px, 2.2vw, 24px);
+    font-size: clamp(17px, 1.8vw, 20px);
     line-height: 1.15;
     overflow-wrap: break-word;
 }
@@ -2198,6 +2200,24 @@ body {
 .person span {
     font-size: clamp(6px, .65vw, 8px);
     letter-spacing: clamp(1px, .18vw, 2px);
+}
+
+/* Principal Sponsors: Ninangs / Ninongs */
+.sponsor-subtitle {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+}
+
+.sponsor-divider {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid var(--line);
 }
 
 /* Travel / map */
